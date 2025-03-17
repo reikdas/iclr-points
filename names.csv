@@ -1,0 +1,28 @@
+ParentArea,ReadableTitle,ParentParentArea
+ai,Artificial intelligence,AI
+vision,Computer vision,AI
+mlmining,Machine learning,AI
+nlp,Natural language processing,AI
+inforet,The Web & information retrieval,AI
+arch,Computer architecture,Systems
+comm,Computer networks,Systems
+sec,Computer security,Systems
+mod,Databases,Systems
+da,Design automation,Systems
+bed,Embedded & real-time systems,Systems
+hpc,High-performance computing,Systems
+mobile,Mobile computing,Systems
+metrics,Measurement & perf. analysis,Systems
+ops,Operating systems,Systems
+plan,Programming languages,Systems
+soft,Software engineering,Systems
+act,Algorithms & complexity,Theory
+crypt,Cryptography,Theory
+log,Logic & verification,Theory
+bio,Comp. bio & bioinformatics,Interdisciplinary Areas
+graph,Computer graphics,Interdisciplinary Areas
+csed,Computer science education,Interdisciplinary Areas
+ecom,Economics & computation,Interdisciplinary Areas
+chi,Human-computer interaction,Interdisciplinary Areas
+robotics,Robotics,Interdisciplinary Areas
+visualization,Visualization,Interdisciplinary Areas

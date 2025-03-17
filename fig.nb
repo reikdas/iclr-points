@@ -1,0 +1,1013 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.1' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     39770,       1005]
+NotebookOptionsPosition[     39291,        988]
+NotebookOutlinePosition[     39679,       1004]
+CellTagsIndexPosition[     39636,       1001]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"Import", " ", 
+     RowBox[{"names", ".", "csv"}], " ", "and", " ", "build", " ", "a", " ", 
+     RowBox[{"mapping", ":", "ParentArea"}]}], "->", 
+    RowBox[{"{", 
+     RowBox[{"ReadableTitle", ",", "ParentParentArea"}], "}"}]}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"namesData", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<names.csv\>\""}],
+          "}"}], "]"}], ",", "\"\<CSV\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"namesData", "=", 
+     RowBox[{"Rest", "[", "namesData", "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", 
+    RowBox[{"remove", " ", "header", " ", "row"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"areaMapping", "=", 
+     RowBox[{"Association", "[", 
+      RowBox[{"Table", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"namesData", "[", 
+          RowBox[{"[", 
+           RowBox[{"i", ",", "1"}], "]"}], "]"}], "->", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"namesData", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "2"}], "]"}], "]"}], ",", 
+           RowBox[{"namesData", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "3"}], "]"}], "]"}]}], "}"}]}], ",", 
+        RowBox[{"{", 
+         RowBox[{"i", ",", 
+          RowBox[{"Length", "[", "namesData", "]"}]}], "}"}]}], "]"}], 
+      "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Import", " ", "the", " ", "publication", " ", "data"}], "*)"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"NotebookDirectory", "[", "]"}], ",", 
+          "\"\<pubs_per_faculty_with_iclr.csv\>\""}], "}"}], "]"}], ",", 
+       "\"\<CSV\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Rest", "[", "data", "]"}]}], ";"}], "  ", 
+   RowBox[{"(*", 
+    RowBox[{"remove", " ", "header", " ", "row"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"areas", "=", 
+     RowBox[{"data", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"iclrPoints", "=", 
+     RowBox[{"ToExpression", "[", 
+      RowBox[{"data", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "5"}], "]"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Map", " ", "each", " ", "ParentArea", " ", "to", " ", "its", " ", 
+     "readable", " ", "title", " ", "and", " ", "parent", " ", "parent", " ", 
+     "area"}], "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"mapped", "=", 
+     RowBox[{"areaMapping", "/@", "areas"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"readableTitles", "=", 
+     RowBox[{"mapped", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"parentParent", "=", 
+     RowBox[{"mapped", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Define", " ", "a", " ", "unique", " ", "color", " ", "for", " ", "each", 
+     " ", "ParentParentArea"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"colorMapping", "=", 
+     RowBox[{"<|", 
+      RowBox[{
+       RowBox[{"\"\<AI\>\"", "->", 
+        RowBox[{"RGBColor", "[", 
+         RowBox[{
+          RowBox[{"55", "/", "255"}], ",", 
+          RowBox[{"126", "/", "255"}], ",", 
+          RowBox[{"184", "/", "255"}]}], "]"}]}], ",", 
+       RowBox[{"\"\<Systems\>\"", "->", 
+        RowBox[{"RGBColor", "[", 
+         RowBox[{
+          RowBox[{"255", "/", "255"}], ",", 
+          RowBox[{"127", "/", "255"}], ",", 
+          RowBox[{"0", "/", "255"}]}], "]"}]}], ",", 
+       RowBox[{"\"\<Theory\>\"", "->", 
+        RowBox[{"RGBColor", "[", 
+         RowBox[{
+          RowBox[{"77", "/", "255"}], ",", 
+          RowBox[{"175", "/", "255"}], ",", 
+          RowBox[{"74", "/", "255"}]}], "]"}]}], ",", 
+       RowBox[{"\"\<Interdisciplinary Areas\>\"", "->", 
+        RowBox[{"RGBColor", "[", 
+         RowBox[{
+          RowBox[{"152", "/", "255"}], ",", 
+          RowBox[{"78", "/", "255"}], ",", 
+          RowBox[{"163", "/", "255"}]}], "]"}]}]}], "|>"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"barColors", "=", 
+     RowBox[{"Lookup", "[", 
+      RowBox[{"colorMapping", ",", "parentParent", ",", "Gray"}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Define", " ", "desired", " ", "order", " ", "for", " ", 
+     "ParentParentArea"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"order", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<AI\>\"", ",", "\"\<Systems\>\"", ",", "\"\<Theory\>\"", ",", 
+       "\"\<Interdisciplinary Areas\>\""}], "}"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"sortKey", "[", "pp_", "]"}], ":=", 
+     RowBox[{
+      RowBox[{"FirstPosition", "[", 
+       RowBox[{"order", ",", "pp", ",", 
+        RowBox[{"{", "Infinity", "}"}]}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Combine", " ", "and", " ", "sort", " ", "the", " ", "data", " ", "based",
+      " ", "on", " ", "ParentParentArea", " ", "order"}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"combined", "=", 
+     RowBox[{"Transpose", "[", 
+      RowBox[{"{", 
+       RowBox[{
+       "readableTitles", ",", "iclrPoints", ",", "parentParent", ",", 
+        "barColors"}], "}"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"sortedCombined", "=", 
+     RowBox[{"SortBy", "[", 
+      RowBox[{"combined", ",", 
+       RowBox[{
+        RowBox[{"sortKey", "[", 
+         RowBox[{"#", "[", 
+          RowBox[{"[", "3", "]"}], "]"}], "]"}], "&"}]}], "]"}]}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"sortedReadable", "=", 
+     RowBox[{"sortedCombined", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"sortedICLRPoints", "=", 
+     RowBox[{"sortedCombined", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"sortedBarColors", "=", 
+     RowBox[{"sortedCombined", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "4"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Create", " ", "a", " ", "horizontal", " ", "bar", " ", "chart"}],
+     "*)"}], "\n", 
+   RowBox[{"BarChart", "[", 
+    RowBox[{
+     RowBox[{"Reverse", "@", "sortedICLRPoints"}], ",", 
+     RowBox[{"LabelingFunction", "->", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Placed", "[", 
+         RowBox[{
+          RowBox[{"NumberForm", "[", 
+           RowBox[{"#1", ",", 
+            RowBox[{"{", 
+             RowBox[{"4", ",", "2"}], "}"}]}], "]"}], ",", "After"}], "]"}], 
+        "&"}], ")"}]}], ",", 
+     RowBox[{"AspectRatio", "->", "1"}], ",", 
+     RowBox[{"BarOrigin", "->", "Left"}], ",", 
+     RowBox[{"ChartLabels", "->", 
+      RowBox[{"Reverse", "@", "sortedReadable"}]}], ",", 
+     RowBox[{"ChartStyle", "->", 
+      RowBox[{"Reverse", "@", "sortedBarColors"}]}], ",", 
+     RowBox[{"AxesLabel", "->", 
+      RowBox[{"{", 
+       RowBox[{"\"\<ICLR Points\>\"", ",", "\"\<Area\>\""}], "}"}]}], ",", 
+     RowBox[{
+     "PlotLabel", "->", 
+      "\"\<How Many ICLR Publications Is One Paper in Each Area?\>\""}], ",", 
+     
+     RowBox[{"ImageSize", "->", "Large"}]}], "]"}], "\n"}]}]], "Input",
+ CellChangeTimes->{{3.9511817664024553`*^9, 3.951181858555585*^9}, {
+   3.9511819209512997`*^9, 3.9511819611865797`*^9}, {3.951182035227654*^9, 
+   3.951182057607058*^9}, {3.9511820946708317`*^9, 3.9511821198886013`*^9}, {
+   3.951182166143955*^9, 3.9511822246513567`*^9}, {3.9511822749528112`*^9, 
+   3.951182295798502*^9}, {3.951182329549735*^9, 3.951182331008996*^9}, 
+   3.951182373932734*^9, {3.951182422174921*^9, 3.951182425768931*^9}, {
+   3.95118248325856*^9, 3.951182484883264*^9}, {3.951182515103957*^9, 
+   3.951182518715949*^9}, {3.951182582287498*^9, 3.951182639887403*^9}, {
+   3.951182818723604*^9, 3.951182842283086*^9}, {3.951184430052909*^9, 
+   3.951184430865684*^9}, {3.951186075324649*^9, 3.951186093743369*^9}},
+ CellLabel->"In[41]:=",ExpressionUUID->"96001169-385a-4c1d-a511-38002d1f5118"],
+
+Cell[BoxData[
+ GraphicsBox[{
+   {Opacity[0], 
+    PointBox[{{0., 0.041184085613187094`}, {0., 27.42193837921809}}]}, {{}, 
+    {RGBColor[0.982864, 0.7431472, 0.3262672], EdgeForm[{Opacity[0.511], 
+     Thickness[Small]}], 
+     {RGBColor[
+       NCache[
+        Rational[152, 255], 0.596078431372549], 
+       NCache[
+        Rational[26, 85], 0.3058823529411765], 
+       NCache[
+        Rational[163, 255], 0.6392156862745098]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 0.5780616207819107}, {3.7491821489743073, 1.4219383792180893},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[152, 255], 0.596078431372549], 
+       NCache[
+        Rational[26, 85], 0.3058823529411765], 
+       NCache[
+        Rational[163, 255], 0.6392156862745098]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 1.5780616207819107}, {1.1573245463574808, 2.4219383792180893},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[152, 255], 0.596078431372549], 
+       NCache[
+        Rational[26, 85], 0.3058823529411765], 
+       NCache[
+        Rational[163, 255], 0.6392156862745098]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 2.5780616207819107}, {2.74222038780133, 3.4219383792180893},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[152, 255], 0.596078431372549], 
+       NCache[
+        Rational[26, 85], 0.3058823529411765], 
+       NCache[
+        Rational[163, 255], 0.6392156862745098]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 3.5780616207819107}, {2.5128310011839607, 4.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[152, 255], 0.596078431372549], 
+       NCache[
+        Rational[26, 85], 0.3058823529411765], 
+       NCache[
+        Rational[163, 255], 0.6392156862745098]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 4.57806162078191}, {4.382861965373732, 5.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[152, 255], 0.596078431372549], 
+       NCache[
+        Rational[26, 85], 0.3058823529411765], 
+       NCache[
+        Rational[163, 255], 0.6392156862745098]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 5.57806162078191}, {2.5208829671635544, 6.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[152, 255], 0.596078431372549], 
+       NCache[
+        Rational[26, 85], 0.3058823529411765], 
+       NCache[
+        Rational[163, 255], 0.6392156862745098]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 6.57806162078191}, {12.907859089401866, 7.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[77, 255], 0.30196078431372547`], 
+       NCache[
+        Rational[35, 51], 0.6862745098039216], 
+       NCache[
+        Rational[74, 255], 0.2901960784313726]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 7.57806162078191}, {7.540024786123555, 8.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[77, 255], 0.30196078431372547`], 
+       NCache[
+        Rational[35, 51], 0.6862745098039216], 
+       NCache[
+        Rational[74, 255], 0.2901960784313726]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 8.578061620781911}, {3.2493679112926075, 9.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[77, 255], 0.30196078431372547`], 
+       NCache[
+        Rational[35, 51], 0.6862745098039216], 
+       NCache[
+        Rational[74, 255], 0.2901960784313726]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 9.578061620781911}, {4.991927943501781, 10.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 10.578061620781911}, {5.658566556741893, 11.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 11.578061620781911}, {6.761804811426145, 12.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 12.578061620781911}, {5.2702440025887505, 13.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 13.578061620781911}, {4.152606417279872, 14.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 14.578061620781911}, {6.791356489476358, 15.421938379218089},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 15.578061620781911}, {7.712876763259074, 16.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 16.578061620781913}, {7.184775077514662, 17.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 17.578061620781913}, {2.5648772152499, 18.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 18.578061620781913}, {3.5994585382900834, 19.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 19.578061620781913}, {3.288627902620058, 20.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 20.578061620781913}, {5.115426229048766, 21.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[1, 
+       NCache[
+        Rational[127, 255], 0.4980392156862745], 0], EdgeForm[{Opacity[0.511],
+       Thickness[Small]}], 
+      RectangleBox[{0., 21.578061620781913}, {3.763608869189689, 22.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[11, 51], 0.21568627450980393`], 
+       NCache[
+        Rational[42, 85], 0.49411764705882355`], 
+       NCache[
+        Rational[184, 255], 0.7215686274509804]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 22.578061620781913}, {3.14030065025088, 23.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[11, 51], 0.21568627450980393`], 
+       NCache[
+        Rational[42, 85], 0.49411764705882355`], 
+       NCache[
+        Rational[184, 255], 0.7215686274509804]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 23.578061620781913}, {1.082588465251657, 24.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[11, 51], 0.21568627450980393`], 
+       NCache[
+        Rational[42, 85], 0.49411764705882355`], 
+       NCache[
+        Rational[184, 255], 0.7215686274509804]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 24.578061620781913}, {1., 25.42193837921809},
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[11, 51], 0.21568627450980393`], 
+       NCache[
+        Rational[42, 85], 0.49411764705882355`], 
+       NCache[
+        Rational[184, 255], 0.7215686274509804]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 25.578061620781913}, {0.9046689131279526, 26.42193837921809},
+       
+       RoundingRadius->0]}, 
+     {RGBColor[
+       NCache[
+        Rational[11, 51], 0.21568627450980393`], 
+       NCache[
+        Rational[42, 85], 0.49411764705882355`], 
+       NCache[
+        Rational[184, 255], 0.7215686274509804]], EdgeForm[{Opacity[0.511], 
+      Thickness[Small]}], 
+      RectangleBox[{0., 26.578061620781913}, {2.0902586651976183, 27.42193837921809},
+       
+       RoundingRadius->0]}}, {}, {}}, {}, {InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"3.75\"\>",
+        ShowStringCharacters->False],
+       3.7491821489743073`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {3.7491821489743073, 1.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"1.16\"\>",
+        ShowStringCharacters->False],
+       1.1573245463574808`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {1.1573245463574808, 2.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.74\"\>",
+        ShowStringCharacters->False],
+       2.74222038780133,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {2.74222038780133, 3.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.51\"\>",
+        ShowStringCharacters->False],
+       2.5128310011839607`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {2.5128310011839607, 4.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"4.38\"\>",
+        ShowStringCharacters->False],
+       4.382861965373732,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {4.382861965373732, 5.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.52\"\>",
+        ShowStringCharacters->False],
+       2.5208829671635544`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {2.5208829671635544, 6.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"12.91\"\>",
+        ShowStringCharacters->False],
+       12.907859089401866`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {12.907859089401866, 7.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.54\"\>",
+        ShowStringCharacters->False],
+       7.540024786123555,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {7.540024786123555, 8.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"3.25\"\>",
+        ShowStringCharacters->False],
+       3.2493679112926075`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {3.2493679112926075, 9.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"4.99\"\>",
+        ShowStringCharacters->False],
+       4.991927943501781,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {4.991927943501781, 10.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"5.66\"\>",
+        ShowStringCharacters->False],
+       5.658566556741893,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {5.658566556741893, 11.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.76\"\>",
+        ShowStringCharacters->False],
+       6.761804811426145,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {6.761804811426145, 12.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"5.27\"\>",
+        ShowStringCharacters->False],
+       5.2702440025887505`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {5.2702440025887505, 13.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"4.15\"\>",
+        ShowStringCharacters->False],
+       4.152606417279872,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {4.152606417279872, 14.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"6.79\"\>",
+        ShowStringCharacters->False],
+       6.791356489476358,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {6.791356489476358, 15.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.71\"\>",
+        ShowStringCharacters->False],
+       7.712876763259074,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {7.712876763259074, 16.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"7.18\"\>",
+        ShowStringCharacters->False],
+       7.184775077514662,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {7.184775077514662, 17.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.56\"\>",
+        ShowStringCharacters->False],
+       2.5648772152499,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {2.5648772152499, 18.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"3.60\"\>",
+        ShowStringCharacters->False],
+       3.5994585382900834`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {3.5994585382900834, 19.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"3.29\"\>",
+        ShowStringCharacters->False],
+       3.288627902620058,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {3.288627902620058, 20.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"5.12\"\>",
+        ShowStringCharacters->False],
+       5.115426229048766,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {5.115426229048766, 21.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"3.76\"\>",
+        ShowStringCharacters->False],
+       3.763608869189689,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {3.763608869189689, 22.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"3.14\"\>",
+        ShowStringCharacters->False],
+       3.14030065025088,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {3.14030065025088, 23.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"1.08\"\>",
+        ShowStringCharacters->False],
+       1.082588465251657,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {1.082588465251657, 24.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"1.00\"\>",
+        ShowStringCharacters->False],
+       1.,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {1., 25.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"0.90\"\>",
+        ShowStringCharacters->False],
+       0.9046689131279526,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {0.9046689131279526, 26.}], 
+     ImageScaled[{0, 0.5}]], InsetBox[
+     TagBox[
+      InterpretationBox[
+       StyleBox["\<\"2.09\"\>",
+        ShowStringCharacters->False],
+       2.0902586651976183`,
+       AutoDelete->True],
+      NumberForm[#, {4, 2}]& ], Offset[{6, 0}, {2.0902586651976183, 27.}], 
+     ImageScaled[{0, 0.5}]]}, {}, {}, 
+   StyleBox[
+    StyleBox[{
+      {Thickness[Tiny], 
+       LineBox[{{0., 0.041184085613187094`}, {0., 27.969553465090186`}}], 
+       StyleBox[
+        {Thickness[Tiny], InsetBox[
+          TagBox["\<\"ICLR Points\"\>",
+           HoldForm], Offset[{0., 10.}, {0., 27.42193837921809}], NCache[
+          ImageScaled[{Rational[1, 2], 0}], ImageScaled[{0.5, 0}]], 
+          Automatic, {1, 0}]}, "GraphicsLabel",
+        StripOnInput->False]}, 
+      StyleBox[{
+        {Thickness[Tiny], 
+         LineBox[{{0., 0.5780616207819107}, 
+           Offset[{-6., 0.}, {0., 0.5780616207819107}]}], 
+         LineBox[{{0., 27.421938379218087`}, 
+           Offset[{-6., 0.}, {0., 
+            27.421938379218087`}]}], {{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, \
+{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {
+           LineBox[{{0., 1.4219383792180893`}, 
+             Offset[{-4., 0.}, {0., 1.4219383792180893`}]}], 
+           LineBox[{{0., 1.5780616207819107`}, 
+             Offset[{-4., 0.}, {0., 1.5780616207819107`}]}], 
+           LineBox[{{0., 2.4219383792180893`}, 
+             Offset[{-4., 0.}, {0., 2.4219383792180893`}]}], 
+           LineBox[{{0., 2.5780616207819107`}, 
+             Offset[{-4., 0.}, {0., 2.5780616207819107`}]}], 
+           LineBox[{{0., 3.4219383792180893`}, 
+             Offset[{-4., 0.}, {0., 3.4219383792180893`}]}], 
+           LineBox[{{0., 3.5780616207819107`}, 
+             Offset[{-4., 0.}, {0., 3.5780616207819107`}]}], 
+           LineBox[{{0., 4.421938379218089}, 
+             Offset[{-4., 0.}, {0., 4.421938379218089}]}], 
+           LineBox[{{0., 4.57806162078191}, 
+             Offset[{-4., 0.}, {0., 4.57806162078191}]}], 
+           LineBox[{{0., 5.421938379218089}, 
+             Offset[{-4., 0.}, {0., 5.421938379218089}]}], 
+           LineBox[{{0., 5.578061620781909}, 
+             Offset[{-4., 0.}, {0., 5.578061620781909}]}], 
+           LineBox[{{0., 6.421938379218089}, 
+             Offset[{-4., 0.}, {0., 6.421938379218089}]}], 
+           LineBox[{{0., 6.578061620781909}, 
+             Offset[{-4., 0.}, {0., 6.578061620781909}]}], 
+           LineBox[{{0., 7.421938379218089}, 
+             Offset[{-4., 0.}, {0., 7.421938379218089}]}], 
+           LineBox[{{0., 7.578061620781909}, 
+             Offset[{-4., 0.}, {0., 7.578061620781909}]}], 
+           LineBox[{{0., 8.421938379218089}, 
+             Offset[{-4., 0.}, {0., 8.421938379218089}]}], 
+           LineBox[{{0., 8.57806162078191}, 
+             Offset[{-4., 0.}, {0., 8.57806162078191}]}], 
+           LineBox[{{0., 9.421938379218089}, 
+             Offset[{-4., 0.}, {0., 9.421938379218089}]}], 
+           LineBox[{{0., 9.578061620781911}, 
+             Offset[{-4., 0.}, {0., 9.578061620781911}]}], 
+           LineBox[{{0., 10.421938379218089`}, 
+             Offset[{-4., 0.}, {0., 10.421938379218089`}]}], 
+           LineBox[{{0., 10.578061620781911`}, 
+             Offset[{-4., 0.}, {0., 10.578061620781911`}]}], 
+           LineBox[{{0., 11.421938379218089`}, 
+             Offset[{-4., 0.}, {0., 11.421938379218089`}]}], 
+           LineBox[{{0., 11.578061620781911`}, 
+             Offset[{-4., 0.}, {0., 11.578061620781911`}]}], 
+           LineBox[{{0., 12.421938379218089`}, 
+             Offset[{-4., 0.}, {0., 12.421938379218089`}]}], 
+           LineBox[{{0., 12.578061620781911`}, 
+             Offset[{-4., 0.}, {0., 12.578061620781911`}]}], 
+           LineBox[{{0., 13.421938379218089`}, 
+             Offset[{-4., 0.}, {0., 13.421938379218089`}]}], 
+           LineBox[{{0., 13.578061620781911`}, 
+             Offset[{-4., 0.}, {0., 13.578061620781911`}]}], 
+           LineBox[{{0., 14.421938379218089`}, 
+             Offset[{-4., 0.}, {0., 14.421938379218089`}]}], 
+           LineBox[{{0., 14.578061620781911`}, 
+             Offset[{-4., 0.}, {0., 14.578061620781911`}]}], 
+           LineBox[{{0., 15.421938379218089`}, 
+             Offset[{-4., 0.}, {0., 15.421938379218089`}]}], 
+           LineBox[{{0., 15.578061620781911`}, 
+             Offset[{-4., 0.}, {0., 15.578061620781911`}]}], 
+           LineBox[{{0., 16.42193837921809}, 
+             Offset[{-4., 0.}, {0., 16.42193837921809}]}], 
+           LineBox[{{0., 16.57806162078191}, 
+             Offset[{-4., 0.}, {0., 16.57806162078191}]}], 
+           LineBox[{{0., 17.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 17.421938379218087`}]}], 
+           LineBox[{{0., 17.57806162078191}, 
+             Offset[{-4., 0.}, {0., 17.57806162078191}]}], 
+           LineBox[{{0., 18.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 18.421938379218087`}]}], 
+           LineBox[{{0., 18.57806162078191}, 
+             Offset[{-4., 0.}, {0., 18.57806162078191}]}], 
+           LineBox[{{0., 19.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 19.421938379218087`}]}], 
+           LineBox[{{0., 19.57806162078191}, 
+             Offset[{-4., 0.}, {0., 19.57806162078191}]}], 
+           LineBox[{{0., 20.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 20.421938379218087`}]}], 
+           LineBox[{{0., 20.57806162078191}, 
+             Offset[{-4., 0.}, {0., 20.57806162078191}]}], 
+           LineBox[{{0., 21.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 21.421938379218087`}]}], 
+           LineBox[{{0., 21.57806162078191}, 
+             Offset[{-4., 0.}, {0., 21.57806162078191}]}], 
+           LineBox[{{0., 22.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 22.421938379218087`}]}], 
+           LineBox[{{0., 22.57806162078191}, 
+             Offset[{-4., 0.}, {0., 22.57806162078191}]}], 
+           LineBox[{{0., 23.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 23.421938379218087`}]}], 
+           LineBox[{{0., 23.57806162078191}, 
+             Offset[{-4., 0.}, {0., 23.57806162078191}]}], 
+           LineBox[{{0., 24.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 24.421938379218087`}]}], 
+           LineBox[{{0., 24.57806162078191}, 
+             Offset[{-4., 0.}, {0., 24.57806162078191}]}], 
+           LineBox[{{0., 25.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 25.421938379218087`}]}], 
+           LineBox[{{0., 25.57806162078191}, 
+             Offset[{-4., 0.}, {0., 25.57806162078191}]}], 
+           LineBox[{{0., 26.421938379218087`}, 
+             Offset[{-4., 0.}, {0., 26.421938379218087`}]}], 
+           LineBox[{{0., 26.57806162078191}, 
+             Offset[{-4., 0.}, {0., 26.57806162078191}]}]}, {}}}, 
+        StyleBox[
+         {Thickness[Tiny], 
+          InsetBox["\<\"Visualization\"\>", Offset[{-2, 0}, {0., 1.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Robotics\"\>", Offset[{-2, 0}, {0., 2.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Human-computer interaction\"\>", 
+           Offset[{-2, 0}, {0., 3.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Economics & computation\"\>", 
+           Offset[{-2, 0}, {0., 3.9999999999999996}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Computer science education\"\>", 
+           Offset[{-2, 0}, {0., 5.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Computer graphics\"\>", Offset[{-2, 0}, {0., 6.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Comp. bio & bioinformatics\"\>", 
+           Offset[{-2, 0}, {0., 7.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Logic & verification\"\>", Offset[{-2, 0}, {0., 8.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Cryptography\"\>", Offset[{-2, 0}, {0., 9.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Algorithms & complexity\"\>", 
+           Offset[{-2, 0}, {0., 10.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Software engineering\"\>", Offset[{-2, 0}, {0., 11.}],
+            NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Programming languages\"\>", 
+           Offset[{-2, 0}, {0., 12.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Operating systems\"\>", Offset[{-2, 0}, {0., 13.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Mobile computing\"\>", Offset[{-2, 0}, {0., 14.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Measurement & perf. analysis\"\>", 
+           Offset[{-2, 0}, {0., 15.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"High-performance computing\"\>", 
+           Offset[{-2, 0}, {0., 16.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Embedded & real-time systems\"\>", 
+           Offset[{-2, 0}, {0., 17.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Design automation\"\>", Offset[{-2, 0}, {0., 18.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Databases\"\>", Offset[{-2, 0}, {0., 19.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Computer security\"\>", Offset[{-2, 0}, {0., 20.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Computer networks\"\>", Offset[{-2, 0}, {0., 21.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Computer architecture\"\>", 
+           Offset[{-2, 0}, {0., 22.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"The Web & information retrieval\"\>", 
+           Offset[{-2, 0}, {0., 23.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Natural language processing\"\>", 
+           Offset[{-2, 0}, {0., 24.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Machine learning\"\>", Offset[{-2, 0}, {0., 25.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Computer vision\"\>", Offset[{-2, 0}, {0., 26.}], 
+           NCache[ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}], 
+          InsetBox["\<\"Artificial intelligence\"\>", 
+           Offset[{-2, 0}, {0., 27.}], NCache[
+           ImageScaled[{1, Rational[1, 2]}], ImageScaled[{1, 0.5}]], 
+           Automatic, {1, 0}]}, "GraphicsLabel",
+         StripOnInput->False]}, "GraphicsTicks",
+       StripOnInput->False]},
+     Antialiasing->False], "GraphicsAxes",
+    StripOnInput->False]},
+  AspectRatio->1,
+  Axes->{True, False},
+  AxesLabel->{
+    FormBox[
+     TagBox["\"Area\"", HoldForm], TraditionalForm], 
+    FormBox[
+     TagBox["\"ICLR Points\"", HoldForm], TraditionalForm]},
+  AxesOrigin->{0., 0.041184085613187094`},
+  CoordinatesToolOptions:>{"DisplayFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& ), "CopiedValueFunction" -> ({
+      Identity[
+       Part[#, 1]], 
+      Identity[
+       Part[#, 2]]}& )},
+  DisplayFunction->Identity,
+  FrameLabel->{{None, None}, {None, None}},
+  FrameTicks->{{Automatic, Automatic}, {Automatic, Automatic}},
+  GridLines->{None, None},
+  GridLinesStyle->Directive[
+    GrayLevel[0.5, 0.4]],
+  ImageSize->Large,
+  PlotLabel->FormBox[
+   "\"How Many ICLR Publications Is One Paper in Each Area?\"", 
+    TraditionalForm],
+  PlotRange->{{All, All}, {All, All}},
+  PlotRangePadding->{{
+     Scaled[0.02], 
+     Scaled[0.02]}, {
+     Scaled[0.02], 
+     Scaled[0.05]}},
+  Ticks->{Automatic, None}]], "Output",
+ CellChangeTimes->{{3.9511817674464703`*^9, 3.9511817868837137`*^9}, {
+   3.9511818302837477`*^9, 3.951181859020863*^9}, 3.951181961757032*^9, {
+   3.951182046602623*^9, 3.951182095352316*^9}, 3.951182130752791*^9, {
+   3.9511821683032923`*^9, 3.9511822101151123`*^9}, 3.951182275621519*^9, 
+   3.951182331524015*^9, 3.951182374529437*^9, 3.951182426222639*^9, {
+   3.951182515944282*^9, 3.951182519193198*^9}, {3.951182587295054*^9, 
+   3.951182640392805*^9}, {3.951182819816279*^9, 3.951182842901494*^9}, 
+   3.95118443178899*^9, {3.951186087436708*^9, 3.9511861002945957`*^9}},
+ CellLabel->"Out[60]=",ExpressionUUID->"9c03e13c-d2da-4f9e-84a6-a819d6c4045d"]
+}, Open  ]]
+},
+WindowSize->{606, 660},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.1 for Linux x86 (64-bit) (July 16, 2024)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"de09f048-ead2-47ab-884a-03bce81cf371"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[576, 22, 8555, 226, 1180, "Input",ExpressionUUID->"96001169-385a-4c1d-a511-38002d1f5118"],
+Cell[9134, 250, 30141, 735, 431, "Output",ExpressionUUID->"9c03e13c-d2da-4f9e-84a6-a819d6c4045d"]
+}, Open  ]]
+}
+]
+*)
+
