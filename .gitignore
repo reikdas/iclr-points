@@ -1,3 +1,18 @@
-iclr_points_report.csv
+__pycache__/
+
+# Data from CSRankings
+dblp.xml.gz
+generated-author-info.csv
+csrankings.py
+sigcse-research-articles.csv
+
+area_publications.csv
+iclr.csv
+faculty_iclr_details.csv
+faculty_iclr_top10.csv
+institute_adjusted_details.csv
+institute_adjusted_ranked.csv
 can_names.csv
+candidate_iclr.csv
+iclr_points_report.csv
 test.py
