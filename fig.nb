@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       154,          7]
-NotebookDataLength[    249987,       5876]
-NotebookOptionsPosition[    247743,       5829]
-NotebookOutlinePosition[    248161,       5846]
-CellTagsIndexPosition[    248118,       5843]
+NotebookDataLength[    373219,       8771]
+NotebookOptionsPosition[    370503,       8716]
+NotebookOutlinePosition[    370921,       8733]
+CellTagsIndexPosition[    370878,       8730]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -4373,7 +4373,7 @@ Cell[BoxData[
     RowBox[{"data", "=", 
      RowBox[{"Import", "[", 
       RowBox[{"\"\<institute_adjusted_details.csv\>\"", ",", "\"\<CSV\>\""}], 
-      "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+      "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
      RowBox[{
@@ -4387,7 +4387,7 @@ Cell[BoxData[
      RowBox[{"First", "[", "data", "]"}]}], ";"}], "\n", 
    RowBox[{
     RowBox[{"dataRows", "=", 
-     RowBox[{"Rest", "[", "data", "]"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+     RowBox[{"Rest", "[", "data", "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
      RowBox[{"Build", " ", "an", " ", 
@@ -4428,8 +4428,8 @@ Cell[BoxData[
            RowBox[{"<|", 
             RowBox[{"area", "->", "points"}], "|>"}]}]}], "]"}]}], "]"}], ",", 
       RowBox[{"{", 
-       RowBox[{"row", ",", "dataRows"}], "}"}]}], "]"}], ";"}], 
-   "\[IndentingNewLine]", "\n", 
+       RowBox[{"row", ",", "dataRows"}], "}"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{"Define", " ", "sorted", " ", "categories", " ", 
      RowBox[{"(", 
@@ -4450,7 +4450,7 @@ Cell[BoxData[
        "\"\<crypt\>\"", ",", "\"\<log\>\"", ",", "\"\<bio\>\"", ",", 
        "\"\<graph\>\"", ",", "\"\<csed\>\"", ",", "\"\<ecom\>\"", ",", 
        "\"\<chi\>\"", ",", "\"\<robotics\>\"", ",", "\"\<visualization\>\""}],
-       "}"}]}], ";"}], "\[IndentingNewLine]", "\n", 
+       "}"}]}], ";"}], "\n", "\[IndentingNewLine]", 
    RowBox[{"(*", 
     RowBox[{
     "Function", " ", "to", " ", "extract", " ", "a", " ", "data", " ", 
@@ -4479,24 +4479,24 @@ Cell[BoxData[
            RowBox[{"{", 
             RowBox[{"cat", ",", "categories"}], "}"}]}], "]"}]}], ";", 
         "\[IndentingNewLine]", "values"}]}], "]"}]}], ";"}], 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "List", " ", "of", " ", "institute", " ", "names", " ", "to", " ", 
-     "plot"}], "*)"}], "\n", 
+     "plot"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"institutes", "=", 
      RowBox[{"{", 
       RowBox[{"\"\<Zhejiang University\>\"", ",", "\"\<KAIST\>\""}], "}"}]}], 
-    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+    ";"}], "\[IndentingNewLine]", "\n", 
    RowBox[{"(*", 
     RowBox[{
     "Obtain", " ", "data", " ", "vectors", " ", "for", " ", "the", " ", 
-     "selected", " ", "institutes"}], "*)"}], "\n", 
+     "selected", " ", "institutes"}], "*)"}], "\[IndentingNewLine]", 
    RowBox[{
     RowBox[{"dataVectors", "=", 
      RowBox[{"getData", "/@", "institutes"}]}], ";"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", 
+   "\n", 
    RowBox[{"(*", 
     RowBox[{"Create", " ", "the", " ", "radar", " ", "chart", " ", "for", " ", 
      RowBox[{"comparison", ".", 
@@ -4504,7 +4504,8 @@ Cell[BoxData[
        RowBox[{
        "Assuming", " ", "RadialAxisPlot", " ", "is", " ", "defined", " ", 
         "or", " ", "available", " ", "in", " ", "your", " ", 
-        RowBox[{"environment", "."}]}], ")"}]}]}], "*)"}], "\n", 
+        RowBox[{"environment", "."}]}], ")"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
    RowBox[{"RadialAxisPlot", "[", 
     RowBox[{"dataVectors", ",", 
      RowBox[{"AxesLabel", "->", "categories"}], ",", 
@@ -5825,6 +5826,2892 @@ Cell[BoxData[
    3.951980177156773*^9}},
  CellLabel->
   "Out[185]=",ExpressionUUID->"6968fb45-bed3-48f7-96dc-89383b96a290"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Import", " ", "the", " ", "CSV", " ", "data"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"\"\<institute_adjusted_details.csv\>\"", ",", "\"\<CSV\>\""}], 
+      "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "The", " ", "first", " ", "row", " ", "contains", " ", "headers"}], ";", 
+     
+     RowBox[{
+     "separate", " ", "it", " ", "from", " ", "the", " ", "data", " ", 
+      "rows"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"headers", "=", 
+     RowBox[{"First", "[", "data", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"dataRows", "=", 
+     RowBox[{"Rest", "[", "data", "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Build", " ", "an", " ", 
+      RowBox[{"association", ":", "institute"}]}], "->", 
+     RowBox[{"<|", 
+      RowBox[{"area", "->", "AdjustedICLRPoints"}], "|>"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"instituteAssoc", "=", 
+     RowBox[{"Association", "[", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Do", "[", 
+     RowBox[{
+      RowBox[{"With", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"inst", "=", 
+           RowBox[{"row", "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+          RowBox[{"area", "=", 
+           RowBox[{"row", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+          RowBox[{"points", "=", 
+           RowBox[{"ToExpression", "[", 
+            RowBox[{"row", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], "]"}]}]}], "}"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"KeyExistsQ", "[", 
+           RowBox[{"instituteAssoc", ",", "inst"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"instituteAssoc", "[", "inst", "]"}], "[", "area", "]"}], 
+           "=", "points"}], ",", 
+          RowBox[{
+           RowBox[{"instituteAssoc", "[", "inst", "]"}], "=", 
+           RowBox[{"<|", 
+            RowBox[{"area", "->", "points"}], "|>"}]}]}], "]"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"row", ",", "dataRows"}], "}"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Define", " ", "sorted", " ", "categories", " ", 
+     RowBox[{"(", 
+      RowBox[{
+      "use", " ", "0", " ", "for", " ", "categories", " ", "that", " ", 
+       "have", " ", "no", " ", "data"}], ")"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"categories", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<ai\>\"", ",", "\"\<vision\>\"", ",", "\"\<mlmining\>\"", ",", 
+       "\"\<nlp\>\"", ",", "\"\<inforet\>\"", ",", "\"\<arch\>\"", ",", 
+       "\"\<comm\>\"", ",", "\"\<sec\>\"", ",", "\"\<mod\>\"", ",", 
+       "\"\<da\>\"", ",", "\"\<bed\>\"", ",", "\"\<hpc\>\"", ",", 
+       "\"\<mobile\>\"", ",", "\"\<metrics\>\"", ",", "\"\<ops\>\"", ",", 
+       "\"\<plan\>\"", ",", "\"\<soft\>\"", ",", "\"\<act\>\"", ",", 
+       "\"\<crypt\>\"", ",", "\"\<log\>\"", ",", "\"\<bio\>\"", ",", 
+       "\"\<graph\>\"", ",", "\"\<csed\>\"", ",", "\"\<ecom\>\"", ",", 
+       "\"\<chi\>\"", ",", "\"\<robotics\>\"", ",", "\"\<visualization\>\""}],
+       "}"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Function", " ", "to", " ", "extract", " ", "a", " ", "data", " ", 
+     "vector", " ", "for", " ", "a", " ", "given", " ", "institute"}], "*)"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"getData", "[", "institute_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"assoc", ",", "values"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"assoc", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"instituteAssoc", ",", "institute", ",", 
+           RowBox[{"<|", "|>"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"values", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"KeyExistsQ", "[", 
+              RowBox[{"assoc", ",", "cat"}], "]"}], ",", 
+             RowBox[{"assoc", "[", "cat", "]"}], ",", "0"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"cat", ",", "categories"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "values"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "List", " ", "of", " ", "institute", " ", "names", " ", "to", " ", 
+     "plot"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"institutes", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Peking University\>\"", ",", "\"\<Princeton University\>\""}], 
+      "}"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Obtain", " ", "data", " ", "vectors", " ", "for", " ", "the", " ", 
+     "selected", " ", "institutes"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dataVectors", "=", 
+     RowBox[{"getData", "/@", "institutes"}]}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Create", " ", "the", " ", "radar", " ", "chart", " ", "for", " ", 
+     RowBox[{"comparison", ".", 
+      RowBox[{"(", 
+       RowBox[{
+       "Assuming", " ", "RadialAxisPlot", " ", "is", " ", "defined", " ", 
+        "or", " ", "available", " ", "in", " ", "your", " ", 
+        RowBox[{"environment", "."}]}], ")"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"RadialAxisPlot", "[", 
+    RowBox[{"dataVectors", ",", 
+     RowBox[{"AxesLabel", "->", "categories"}], ",", 
+     RowBox[{"PlotLegends", "->", 
+      RowBox[{"Placed", "[", 
+       RowBox[{"institutes", ",", "Bottom"}], "]"}]}], ",", 
+     RowBox[{"ImageSize", "->", "Medium"}], ",", 
+     RowBox[{"Filling", "->", "False"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.952104367073914*^9, 3.9521043759175158`*^9}},
+ CellLabel->"In[1]:=",ExpressionUUID->"d886674f-5e97-466a-8573-cdbb63501303"],
+
+Cell[BoxData[
+ TemplateBox[{
+   GraphicsBox[{
+     TagBox[{}, Deploy, DefaultBaseStyle -> "Deploy"], 
+     TagBox[{{
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0., 1.}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"ai\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             Offset[{0., 10.}, {0., 1.}], 
+             NCache[
+              ImageScaled[{
+                Rational[1, 2], 0}], 
+              ImageScaled[{0.5, 0}]], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "100.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.16666666666666669`}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "200.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.33333333333333337`}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "300.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.5}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "400.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.6666666666666667}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "500.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.8333333333333334}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "600.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 1.}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}]}, {None, {
+                    Directive[
+                    GrayLevel[0.2], 
+                    Opacity[1], 
+                    AbsoluteThickness[1]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  GrayLevel[0.2], 
+                  Opacity[1], 
+                  AbsoluteThickness[1]]}}, StripOnInput -> False], {
+              "GraphicsLabel"}, StripOnInput -> False]}, {"GraphicsTicks"}, 
+            StripOnInput -> False], {None}, StripOnInput -> False]}, {
+         "GraphicsAxes"}, StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.23061587074244014`, 0.9730448705798239}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"vision\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{2.306158707424401, 9.730448705798239}, {
+              0.23061587074244014`, 0.9730448705798239}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.44879918020046217`, 0.8936326403234124}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"mlmining\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{4.487991802004621, 8.936326403234123}, {
+              0.44879918020046217`, 0.8936326403234124}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.6427876096865394, 0.7660444431189781}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"nlp\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{6.427876096865393, 7.660444431189783}, {
+              0.6427876096865394, 0.7660444431189781}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.8021231927550438, 0.5971585917027862}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"inforet\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{8.021231927550438, 5.971585917027862}, {
+              0.8021231927550438, 0.5971585917027862}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.9182161068802741, 0.3960797660391568}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"arch\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.18216106880274, 3.960797660391568}, {
+              0.9182161068802741, 0.3960797660391568}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.984807753012208, 0.17364817766693036`}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"comm\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.84807753012208, 1.7364817766693033`}, {
+              0.984807753012208, 0.17364817766693036`}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.9983081582712683, -0.05814482891047583}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"sec\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.983081582712682, -0.5814482891047582}, {
+              0.9983081582712683, -0.05814482891047583}], 
+             NCache[
+              ImageScaled[{0, 
+                Rational[1, 2]}], 
+              ImageScaled[{0, 0.5}]], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.9579895123154889, -0.28680323271109026`}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"mod\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.57989512315489, -2.8680323271109023`}, {
+              0.9579895123154889, -0.28680323271109026`}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.8660254037844387, -0.5}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"da\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             Offset[{8.660254037844386, -5.}, {0.8660254037844387, -0.5}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.7273736415730487, -0.6862416378687336}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"bed\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{7.273736415730488, -6.862416378687336}, {
+              0.7273736415730487, -0.6862416378687336}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.5495089780708061, -0.8354878114129366}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"hpc\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{5.49508978070806, -8.354878114129365}, {
+              0.5495089780708061, -0.8354878114129366}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.3420201433256687, -0.9396926207859084}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"mobile\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{3.420201433256687, -9.396926207859085}, {
+              0.3420201433256687, -0.9396926207859084}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.11609291412523022`, -0.9932383577419431}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"metrics\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{1.1609291412523022`, -9.93238357741943}, {
+              0.11609291412523022`, -0.9932383577419431}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.11609291412523022`, -0.9932383577419431}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"ops\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-1.1609291412523022`, -9.93238357741943}, \
+{-0.11609291412523022`, -0.9932383577419431}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.3420201433256687, -0.9396926207859084}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"plan\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-3.420201433256687, -9.396926207859085}, \
+{-0.3420201433256687, -0.9396926207859084}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.5495089780708061, -0.8354878114129366}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"soft\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-5.49508978070806, -8.354878114129365}, \
+{-0.5495089780708061, -0.8354878114129366}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.7273736415730487, -0.6862416378687336}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"act\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-7.273736415730488, -6.862416378687336}, \
+{-0.7273736415730487, -0.6862416378687336}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.8660254037844387, -0.5}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"crypt\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             Offset[{-8.660254037844386, -5.}, {-0.8660254037844387, -0.5}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.9579895123154889, -0.28680323271109026`}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"log\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.57989512315489, -2.8680323271109023`}, \
+{-0.9579895123154889, -0.28680323271109026`}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.9983081582712683, -0.05814482891047583}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"bio\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.983081582712682, -0.5814482891047582}, \
+{-0.9983081582712683, -0.05814482891047583}], 
+             NCache[
+              ImageScaled[{1, 
+                Rational[1, 2]}], 
+              ImageScaled[{1, 0.5}]], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.984807753012208, 0.17364817766693036`}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"graph\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.84807753012208, 
+              1.7364817766693033`}, {-0.984807753012208, 
+              0.17364817766693036`}], 
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.9182161068802741, 0.3960797660391568}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"csed\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.18216106880274, 
+              3.960797660391568}, {-0.9182161068802741, 0.3960797660391568}], 
+             
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.8021231927550438, 0.5971585917027862}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"ecom\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-8.021231927550438, 
+              5.971585917027862}, {-0.8021231927550438, 0.5971585917027862}], 
+             
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.6427876096865394, 0.7660444431189781}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"chi\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-6.427876096865393, 
+              7.660444431189783}, {-0.6427876096865394, 0.7660444431189781}], 
+             
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.44879918020046217`, 0.8936326403234124}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"robotics\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-4.487991802004621, 
+              8.936326403234123}, {-0.44879918020046217`, 
+              0.8936326403234124}], 
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.23061587074244014`, 0.9730448705798239}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"visualization\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-2.306158707424401, 
+              9.730448705798239}, {-0.23061587074244014`, 
+              0.9730448705798239}], 
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}}, Deploy, DefaultBaseStyle -> "Deploy"], 
+     TagBox[{{
+        Opacity[0.4], {{
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0., 0.}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.16666666666666669`, 0.16666666666666669`}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.33333333333333337`, 0.33333333333333337`}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.5, 0.5}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.6666666666666667, 0.6666666666666667}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.8333333333333334, 0.8333333333333334}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {1., 1.}, {
+            1.5707963267948966`, -4.712388980384691}]}}}}}, Deploy, 
+      DefaultBaseStyle -> "Deploy"], {{{{{
+          TagBox[{}, Annotation[#, {"Filling", {1, 2}}, "RadialComponent"]& ], 
+          TagBox[{
+            Directive[
+             PointSize[Large], 
+             Thickness[Large], 
+             RGBColor[0.880722, 0.611041, 0.142051], 
+             AbsoluteThickness[1.6], 
+             AbsolutePointSize[4.800000000000001]], 
+            JoinForm["Round"], 
+            CapForm["Round"], 
+            LineBox[CompressedData["
+1:eJwB0QEu/iFib1JlAgAAABwAAAACAAAAAAAAAAAAAABPPmZCvQ2cP6kC8pNz
++ZA/hhDQsbnnsT9sDq9WYUXAPzmn7Rr6MtA/naXfcWs1mD/aqUkVzNmcP68Q
+vMTS44o/E5REC9EEhD8c6OB35QLGP7eEyWVQ/bI/0AolLVxyyD9MFe0oEj6h
+P90wepE5l78/0NwIdG9wfb/7Ob7194F1Pw3WKeGDwVm/lXwCnLbjlz+M7B1F
+0ZWLv5eHadhf9WU/l25PQ363ZL/s4ylJDhKRP3pYgNhY9Jm/va62ojoBkj+f
+8DpZ4Luov1nSlwX1gYE/OQdCADO5sr+FpmSP1K13v44P9LrIUqm/WJz2Cea3
+rb+TQLXkoWnEv9mpbzNqIYG//f0/CLMLir+9iJxH/sfiv2Yk35IbuOG/+HOU
+dbTMjr+sD8KLPMiBv+104dUegLK/pouLBJsnlr9U6owukp+4v7KjjV5C8na/
+i1E18EqSsb/h6pXtXMmIP0nvxwueQEy/qOnrdLFfOD8pWevEpDKRv23L0CFL
+m4k/ikhxdDLtlr8pAN//olKbP/mwVDv/kIm/mL9NixR0mT8COLPacKxYvw9v
+bDXKBno/AAAAAAAAAABPPmZCvQ2cPwgD41w=
+             "]]}, 
+           Annotation[#, {"Joined", {1, 2}}, 
+            "RadialComponent"]& ]}}}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, \
+{}, {}, {}}, {{{{
+          TagBox[{}, Annotation[#, {"Filling", {1, 1}}, "RadialComponent"]& ], 
+          TagBox[{
+            Directive[
+             PointSize[Large], 
+             Thickness[Large], 
+             RGBColor[0.368417, 0.506779, 0.709798], 
+             AbsoluteThickness[1.6], 
+             AbsolutePointSize[4.800000000000001]], 
+            JoinForm["Round"], 
+            CapForm["Round"], 
+            LineBox[CompressedData["
+1:eJxTTMoPSmViYGCQAWIQDQN+T7iv9R98YP8idnd7gu5Ge5Xp9zvr5S7Z+yZs
+ZE1dsdf+xjOLdTfbzto3+8uzCzYctn/JJqsXYHvcftHObla+G9vt+VSqn/sc
+2Gjfk66ZkKa2yn7lbgn/2P5p9lteW/dXr9hs/3jO6vBnu7rta/7qK6xMXWh/
+QVf3fJhZwn6d4M9XkqMP2uevdPnKe3LJ/nehy37q7txkz+B76NH6eUv3T7Xq
+k0rSLrDfd16DcW5T3n7zLStj81Un2L9ia1Gf2jNjf+F83cSG55324Tzyi3+e
+Wrh/ftsec7t5afZXZb7YhRnM2H/TXeb06vUF+2d/3J7pf2PhfqGPH4K7L0ze
+3yMTtDnSYvX+q7ox9l++H9lf71j/ePLD8/tP/67wO9m1ZP9thcvbMhIX7/ev
+7Z3Jl9C8X2D138zE+LL9//Z67P93LmZ/l/rRgtv2jvsZ0MDV8g8B+ts37f+S
+9zq/Na3LHl2+za1n0qHK1v19W1+23vlZb8+z19HwVv3q/XbWf8ofJW2wv53+
++WeH0vT9G165BMVxLLc3XLt0ruuntv2tb5NUEkxWwM2DxRcA3zrSdQ==
+             "]]}, 
+           Annotation[#, {"Joined", {1, 1}}, 
+            "RadialComponent"]& ]}}}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, \
+{}, {}, {}}}, {{}, {}}, {}}, {DisplayFunction -> Identity, AxesLabel -> {
+       FormBox["\"ai\"", TraditionalForm], 
+       FormBox["\"vision\"", TraditionalForm], 
+       FormBox["\"mlmining\"", TraditionalForm], 
+       FormBox["\"nlp\"", TraditionalForm], 
+       FormBox["\"inforet\"", TraditionalForm], 
+       FormBox["\"arch\"", TraditionalForm], 
+       FormBox["\"comm\"", TraditionalForm], 
+       FormBox["\"sec\"", TraditionalForm], 
+       FormBox["\"mod\"", TraditionalForm], 
+       FormBox["\"da\"", TraditionalForm], 
+       FormBox["\"bed\"", TraditionalForm], 
+       FormBox["\"hpc\"", TraditionalForm], 
+       FormBox["\"mobile\"", TraditionalForm], 
+       FormBox["\"metrics\"", TraditionalForm], 
+       FormBox["\"ops\"", TraditionalForm], 
+       FormBox["\"plan\"", TraditionalForm], 
+       FormBox["\"soft\"", TraditionalForm], 
+       FormBox["\"act\"", TraditionalForm], 
+       FormBox["\"crypt\"", TraditionalForm], 
+       FormBox["\"log\"", TraditionalForm], 
+       FormBox["\"bio\"", TraditionalForm], 
+       FormBox["\"graph\"", TraditionalForm], 
+       FormBox["\"csed\"", TraditionalForm], 
+       FormBox["\"ecom\"", TraditionalForm], 
+       FormBox["\"chi\"", TraditionalForm], 
+       FormBox["\"robotics\"", TraditionalForm], 
+       FormBox["\"visualization\"", TraditionalForm]}, AxesOrigin -> 0, 
+     AxesStyle -> Automatic, GridLinesStyle -> Directive[
+       GrayLevel[0.5, 0.4]], ImagePadding -> Automatic, ImageSize -> Medium, 
+     PlotRangePadding -> {{
+        Scaled[0.05], 
+        Scaled[0.05]}, {
+        Scaled[0.05], 
+        Scaled[0.05]}}}], 
+   FormBox[
+    FormBox[
+     TemplateBox[{"\"Peking University\"", "\"Princeton University\""}, 
+      "LineLegend", DisplayFunction -> (FormBox[
+        StyleBox[
+         StyleBox[
+          PaneBox[
+           TagBox[
+            GridBox[{{
+               TagBox[
+                GridBox[{{
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.368417, 0.506779, 0.709798], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {
+                    LineBox[{{0, 12.5}, {20, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.368417, 0.506779, 0.709798], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {}}}, AspectRatio -> 
+                    Full, ImageSize -> {20, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #, 
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.880722, 0.611041, 0.142051], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {
+                    LineBox[{{0, 12.5}, {20, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.880722, 0.611041, 0.142051], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {}}}, AspectRatio -> 
+                    Full, ImageSize -> {20, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #2}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                 AutoDelete -> False, 
+                 GridBoxDividers -> {
+                  "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                 GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}},
+                  GridBoxSpacings -> {"Columns" -> {{0.8, 0.5}}}], "Grid"]}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+             AutoDelete -> False, 
+             GridBoxDividers -> {"Columns" -> {{None}}, "Rows" -> {{None}}}, 
+             GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}}, 
+             GridBoxSpacings -> {"Columns" -> {{0}}, "Rows" -> {{1}}}], 
+            "Grid"], Alignment -> Left, AppearanceElements -> None, 
+           ImageMargins -> {{5, 5}, {5, 5}}, ImageSizeAction -> 
+           "ResizeToFit"], LineIndent -> 0, StripOnInput -> False], {
+          Directive[
+           GrayLevel[0.2], 
+           Opacity[1]], FontFamily -> "Arial"}, Background -> Automatic, 
+         StripOnInput -> False], TraditionalForm]& ), 
+      InterpretationFunction :> (RowBox[{"LineLegend", "[", 
+         RowBox[{
+           RowBox[{"{", 
+             RowBox[{
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   
+                   TemplateBox[<|
+                    "color" -> RGBColor[0.368417, 0.506779, 0.709798]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "1.6`", "]"}], ",", 
+                   
+                   RowBox[{
+                    "AbsolutePointSize", "[", "4.800000000000001`", "]"}]}], 
+                 "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   
+                   TemplateBox[<|
+                    "color" -> RGBColor[0.880722, 0.611041, 0.142051]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "1.6`", "]"}], ",", 
+                   
+                   RowBox[{
+                    "AbsolutePointSize", "[", "4.800000000000001`", "]"}]}], 
+                 "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+             RowBox[{#, ",", #2}], "}"}], ",", 
+           RowBox[{"LegendMarkers", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{
+                 RowBox[{"{", 
+                   RowBox[{"False", ",", "Automatic"}], "}"}], ",", 
+                 RowBox[{"{", 
+                   RowBox[{"False", ",", "Automatic"}], "}"}]}], "}"}]}], ",", 
+           RowBox[{"Joined", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{"True", ",", "True"}], "}"}]}], ",", 
+           RowBox[{"LabelStyle", "\[Rule]", 
+             RowBox[{"Directive", "[", 
+               RowBox[{
+                 TemplateBox[<|"color" -> GrayLevel[0.2]|>, 
+                  "GrayLevelColorSwatchTemplate"], ",", 
+                 RowBox[{"Opacity", "[", "1", "]"}]}], "]"}]}], ",", 
+           RowBox[{"LegendLayout", "\[Rule]", "\"Row\""}]}], "]"}]& ), 
+      Editable -> True], TraditionalForm], TraditionalForm]},
+  "Legended",
+  DisplayFunction->(GridBox[{{
+      TagBox[
+       ItemBox[
+        PaneBox[
+         TagBox[#, "SkipImageSizeLevel"], Alignment -> {Center, Baseline}, 
+         BaselinePosition -> Baseline], DefaultBaseStyle -> "Labeled"], 
+       "SkipImageSizeLevel"]}, {
+      ItemBox[#2, DefaultBaseStyle -> "LabeledLabel"]}}, 
+    GridBoxAlignment -> {"Columns" -> {{Center}}, "Rows" -> {{Center}}}, 
+    AutoDelete -> False, GridBoxItemSize -> Automatic, 
+    BaselinePosition -> {1, 1}]& ),
+  Editable->True,
+  InterpretationFunction->(RowBox[{"Legended", "[", 
+     RowBox[{#, ",", 
+       RowBox[{"Placed", "[", 
+         RowBox[{#2, ",", "Below"}], "]"}]}], "]"}]& )]], "Output",
+ CellChangeTimes->{3.9521043778133717`*^9},
+ CellLabel->"Out[10]=",ExpressionUUID->"c510d71d-65d2-41a9-bf98-6168855996f1"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{"Import", " ", "the", " ", "CSV", " ", "data"}], "*)"}], 
+  RowBox[{
+   RowBox[{
+    RowBox[{"data", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"\"\<institute_adjusted_details.csv\>\"", ",", "\"\<CSV\>\""}], 
+      "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{
+     "The", " ", "first", " ", "row", " ", "contains", " ", "headers"}], ";", 
+     
+     RowBox[{
+     "separate", " ", "it", " ", "from", " ", "the", " ", "data", " ", 
+      "rows"}]}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"headers", "=", 
+     RowBox[{"First", "[", "data", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"dataRows", "=", 
+     RowBox[{"Rest", "[", "data", "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"Build", " ", "an", " ", 
+      RowBox[{"association", ":", "institute"}]}], "->", 
+     RowBox[{"<|", 
+      RowBox[{"area", "->", "AdjustedICLRPoints"}], "|>"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"instituteAssoc", "=", 
+     RowBox[{"Association", "[", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Do", "[", 
+     RowBox[{
+      RowBox[{"With", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"inst", "=", 
+           RowBox[{"row", "[", 
+            RowBox[{"[", "1", "]"}], "]"}]}], ",", 
+          RowBox[{"area", "=", 
+           RowBox[{"row", "[", 
+            RowBox[{"[", "2", "]"}], "]"}]}], ",", 
+          RowBox[{"points", "=", 
+           RowBox[{"ToExpression", "[", 
+            RowBox[{"row", "[", 
+             RowBox[{"[", "3", "]"}], "]"}], "]"}]}]}], "}"}], ",", 
+        RowBox[{"If", "[", 
+         RowBox[{
+          RowBox[{"KeyExistsQ", "[", 
+           RowBox[{"instituteAssoc", ",", "inst"}], "]"}], ",", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"instituteAssoc", "[", "inst", "]"}], "[", "area", "]"}], 
+           "=", "points"}], ",", 
+          RowBox[{
+           RowBox[{"instituteAssoc", "[", "inst", "]"}], "=", 
+           RowBox[{"<|", 
+            RowBox[{"area", "->", "points"}], "|>"}]}]}], "]"}]}], "]"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"row", ",", "dataRows"}], "}"}]}], "]"}], ";"}], "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{"Define", " ", "sorted", " ", "categories", " ", 
+     RowBox[{"(", 
+      RowBox[{
+      "use", " ", "0", " ", "for", " ", "categories", " ", "that", " ", 
+       "have", " ", "no", " ", "data"}], ")"}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"categories", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<ai\>\"", ",", "\"\<vision\>\"", ",", "\"\<mlmining\>\"", ",", 
+       "\"\<nlp\>\"", ",", "\"\<inforet\>\"", ",", "\"\<arch\>\"", ",", 
+       "\"\<comm\>\"", ",", "\"\<sec\>\"", ",", "\"\<mod\>\"", ",", 
+       "\"\<da\>\"", ",", "\"\<bed\>\"", ",", "\"\<hpc\>\"", ",", 
+       "\"\<mobile\>\"", ",", "\"\<metrics\>\"", ",", "\"\<ops\>\"", ",", 
+       "\"\<plan\>\"", ",", "\"\<soft\>\"", ",", "\"\<act\>\"", ",", 
+       "\"\<crypt\>\"", ",", "\"\<log\>\"", ",", "\"\<bio\>\"", ",", 
+       "\"\<graph\>\"", ",", "\"\<csed\>\"", ",", "\"\<ecom\>\"", ",", 
+       "\"\<chi\>\"", ",", "\"\<robotics\>\"", ",", "\"\<visualization\>\""}],
+       "}"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Function", " ", "to", " ", "extract", " ", "a", " ", "data", " ", 
+     "vector", " ", "for", " ", "a", " ", "given", " ", "institute"}], "*)"}],
+    "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"getData", "[", "institute_", "]"}], ":=", 
+     RowBox[{"Module", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"assoc", ",", "values"}], "}"}], ",", 
+       RowBox[{
+        RowBox[{"assoc", "=", 
+         RowBox[{"Lookup", "[", 
+          RowBox[{"instituteAssoc", ",", "institute", ",", 
+           RowBox[{"<|", "|>"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+        RowBox[{"values", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"If", "[", 
+            RowBox[{
+             RowBox[{"KeyExistsQ", "[", 
+              RowBox[{"assoc", ",", "cat"}], "]"}], ",", 
+             RowBox[{"assoc", "[", "cat", "]"}], ",", "0"}], "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"cat", ",", "categories"}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "values"}]}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "List", " ", "of", " ", "institute", " ", "names", " ", "to", " ", 
+     "plot"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"institutes", "=", 
+     RowBox[{"{", 
+      RowBox[{
+      "\"\<Northeastern University\>\"", ",", 
+       "\"\<University of Texas at Austin\>\""}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\n", 
+   RowBox[{"(*", 
+    RowBox[{
+    "Obtain", " ", "data", " ", "vectors", " ", "for", " ", "the", " ", 
+     "selected", " ", "institutes"}], "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"dataVectors", "=", 
+     RowBox[{"getData", "/@", "institutes"}]}], ";"}], "\[IndentingNewLine]", 
+   "\n", 
+   RowBox[{"(*", 
+    RowBox[{"Create", " ", "the", " ", "radar", " ", "chart", " ", "for", " ", 
+     RowBox[{"comparison", ".", 
+      RowBox[{"(", 
+       RowBox[{
+       "Assuming", " ", "RadialAxisPlot", " ", "is", " ", "defined", " ", 
+        "or", " ", "available", " ", "in", " ", "your", " ", 
+        RowBox[{"environment", "."}]}], ")"}]}]}], "*)"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"RadialAxisPlot", "[", 
+    RowBox[{"dataVectors", ",", 
+     RowBox[{"AxesLabel", "->", "categories"}], ",", 
+     RowBox[{"PlotLegends", "->", 
+      RowBox[{"Placed", "[", 
+       RowBox[{"institutes", ",", "Bottom"}], "]"}]}], ",", 
+     RowBox[{"ImageSize", "->", "Medium"}], ",", 
+     RowBox[{"Filling", "->", "False"}]}], "]"}]}]}]], "Input",
+ CellChangeTimes->{{3.9521044381573133`*^9, 3.9521044491826277`*^9}},
+ CellLabel->"In[11]:=",ExpressionUUID->"34398d37-a9ea-4047-8bf4-eb86ae8fcbb6"],
+
+Cell[BoxData[
+ TemplateBox[{
+   GraphicsBox[{
+     TagBox[{}, Deploy, DefaultBaseStyle -> "Deploy"], 
+     TagBox[{{
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0., 1.}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"ai\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             Offset[{0., 10.}, {0., 1.}], 
+             NCache[
+              ImageScaled[{
+                Rational[1, 2], 0}], 
+              ImageScaled[{0.5, 0}]], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "50.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.16666666666666669`}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "100.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.33333333333333337`}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "150.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.5}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "200.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.6666666666666667}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "250.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 0.8333333333333334}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}], 
+                   InsetBox[
+                    FormBox[
+                    StyleBox[
+                    PaneBox[
+                    FrameBox[
+                    "300.`", LabelingSize -> DirectedInfinity[1], Background -> 
+                    None, FrameMargins -> 1., ContentPadding -> False, 
+                    LabelStyle -> {}, Frame -> True, RoundingRadius -> 4., 
+                    Background -> GrayLevel[1., 0.65], FrameStyle -> None, 
+                    FrameMargins -> 2., BaselinePosition -> Automatic, 
+                    LabelingSize -> DirectedInfinity[1], StripOnInput -> 
+                    False], FrameMargins -> 0.], {}, StripOnInput -> False], 
+                    TraditionalForm], 
+                    Offset[{-3., 0.}, {0., 1.}], 
+                    ImageScaled[{1, 0.5}], Automatic, {1, 0}]}, {None, {
+                    Directive[
+                    GrayLevel[0.2], 
+                    Opacity[1], 
+                    AbsoluteThickness[1]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  GrayLevel[0.2], 
+                  Opacity[1], 
+                  AbsoluteThickness[1]]}}, StripOnInput -> False], {
+              "GraphicsLabel"}, StripOnInput -> False]}, {"GraphicsTicks"}, 
+            StripOnInput -> False], {None}, StripOnInput -> False]}, {
+         "GraphicsAxes"}, StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.23061587074244014`, 0.9730448705798239}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"vision\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{2.306158707424401, 9.730448705798239}, {
+              0.23061587074244014`, 0.9730448705798239}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.44879918020046217`, 0.8936326403234124}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"mlmining\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{4.487991802004621, 8.936326403234123}, {
+              0.44879918020046217`, 0.8936326403234124}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.6427876096865394, 0.7660444431189781}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"nlp\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{6.427876096865393, 7.660444431189783}, {
+              0.6427876096865394, 0.7660444431189781}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.8021231927550438, 0.5971585917027862}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"inforet\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{8.021231927550438, 5.971585917027862}, {
+              0.8021231927550438, 0.5971585917027862}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.9182161068802741, 0.3960797660391568}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"arch\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.18216106880274, 3.960797660391568}, {
+              0.9182161068802741, 0.3960797660391568}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.984807753012208, 0.17364817766693036`}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"comm\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.84807753012208, 1.7364817766693033`}, {
+              0.984807753012208, 0.17364817766693036`}], 
+             ImageScaled[{0, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.9983081582712683, -0.05814482891047583}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"sec\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.983081582712682, -0.5814482891047582}, {
+              0.9983081582712683, -0.05814482891047583}], 
+             NCache[
+              ImageScaled[{0, 
+                Rational[1, 2]}], 
+              ImageScaled[{0, 0.5}]], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.9579895123154889, -0.28680323271109026`}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"mod\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{9.57989512315489, -2.8680323271109023`}, {
+              0.9579895123154889, -0.28680323271109026`}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.8660254037844387, -0.5}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"da\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             Offset[{8.660254037844386, -5.}, {0.8660254037844387, -0.5}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.7273736415730487, -0.6862416378687336}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"bed\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{7.273736415730488, -6.862416378687336}, {
+              0.7273736415730487, -0.6862416378687336}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.5495089780708061, -0.8354878114129366}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"hpc\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{5.49508978070806, -8.354878114129365}, {
+              0.5495089780708061, -0.8354878114129366}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.3420201433256687, -0.9396926207859084}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"mobile\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{3.420201433256687, -9.396926207859085}, {
+              0.3420201433256687, -0.9396926207859084}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {0.11609291412523022`, -0.9932383577419431}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"metrics\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{1.1609291412523022`, -9.93238357741943}, {
+              0.11609291412523022`, -0.9932383577419431}], 
+             ImageScaled[{0, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.11609291412523022`, -0.9932383577419431}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"ops\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-1.1609291412523022`, -9.93238357741943}, \
+{-0.11609291412523022`, -0.9932383577419431}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.3420201433256687, -0.9396926207859084}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"plan\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-3.420201433256687, -9.396926207859085}, \
+{-0.3420201433256687, -0.9396926207859084}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.5495089780708061, -0.8354878114129366}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"soft\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-5.49508978070806, -8.354878114129365}, \
+{-0.5495089780708061, -0.8354878114129366}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.7273736415730487, -0.6862416378687336}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"act\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-7.273736415730488, -6.862416378687336}, \
+{-0.7273736415730487, -0.6862416378687336}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.8660254037844387, -0.5}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"crypt\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             Offset[{-8.660254037844386, -5.}, {-0.8660254037844387, -0.5}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.9579895123154889, -0.28680323271109026`}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"log\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.57989512315489, -2.8680323271109023`}, \
+{-0.9579895123154889, -0.28680323271109026`}], 
+             ImageScaled[{1, 1}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.9983081582712683, -0.05814482891047583}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"bio\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.983081582712682, -0.5814482891047582}, \
+{-0.9983081582712683, -0.05814482891047583}], 
+             NCache[
+              ImageScaled[{1, 
+                Rational[1, 2]}], 
+              ImageScaled[{1, 0.5}]], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.984807753012208, 0.17364817766693036`}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"graph\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.84807753012208, 
+              1.7364817766693033`}, {-0.984807753012208, 
+              0.17364817766693036`}], 
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.9182161068802741, 0.3960797660391568}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"csed\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-9.18216106880274, 
+              3.960797660391568}, {-0.9182161068802741, 0.3960797660391568}], 
+             
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.8021231927550438, 0.5971585917027862}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"ecom\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-8.021231927550438, 
+              5.971585917027862}, {-0.8021231927550438, 0.5971585917027862}], 
+             
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.6427876096865394, 0.7660444431189781}}], 
+            InsetBox[
+             FormBox[
+              StyleBox["\"chi\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-6.427876096865393, 
+              7.660444431189783}, {-0.6427876096865394, 0.7660444431189781}], 
+             
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.44879918020046217`, 0.8936326403234124}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"robotics\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-4.487991802004621, 
+              8.936326403234123}, {-0.44879918020046217`, 
+              0.8936326403234124}], 
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}, {
+        StyleBox[{Antialiasing -> True, 
+          StyleBox[{
+            LineBox[{{0., 0.}, {-0.23061587074244014`, 0.9730448705798239}}], 
+            
+            InsetBox[
+             FormBox[
+              StyleBox["\"visualization\"", 
+               Directive[
+                GrayLevel[0.2], 
+                Opacity[1]], StripOnInput -> False], TraditionalForm], 
+             
+             Offset[{-2.306158707424401, 
+              9.730448705798239}, {-0.23061587074244014`, 
+              0.9730448705798239}], 
+             ImageScaled[{1, 0}], Automatic, {1, 0}]}, {
+            Directive[
+             AbsoluteThickness[1], 
+             GrayLevel[0.6], 
+             Opacity[0.6]]}, StripOnInput -> False], 
+          StyleBox[
+           StyleBox[{{}, 
+             StyleBox[
+              StyleBox[{{
+                 StyleBox[{{}, {}, {}, {}, {}, {}}, {None, {
+                    Directive[
+                    AbsoluteThickness[1], 
+                    GrayLevel[0.6], 
+                    Opacity[0.6]]}}, StripOnInput -> False]}, {}}, {{
+                 Directive[
+                  AbsoluteThickness[1], 
+                  GrayLevel[0.6], 
+                  Opacity[0.6]]}}, StripOnInput -> False], {"GraphicsLabel"}, 
+              StripOnInput -> False]}, {"GraphicsTicks"}, StripOnInput -> 
+            False], {None}, StripOnInput -> False]}, {"GraphicsAxes"}, 
+         StripOnInput -> False]}}, Deploy, DefaultBaseStyle -> "Deploy"], 
+     TagBox[{{
+        Opacity[0.4], {{
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0., 0.}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.16666666666666669`, 0.16666666666666669`}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.33333333333333337`, 0.33333333333333337`}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.5, 0.5}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.6666666666666667, 0.6666666666666667}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {0.8333333333333334, 0.8333333333333334}, {
+            1.5707963267948966`, -4.712388980384691}]}}, {
+          Directive[
+           AbsoluteThickness[1], 
+           GrayLevel[0.5], 
+           Opacity[0.4]], {
+           
+           CircleBox[{0, 0}, {1., 1.}, {
+            1.5707963267948966`, -4.712388980384691}]}}}}}, Deploy, 
+      DefaultBaseStyle -> "Deploy"], {{{{{
+          TagBox[{}, Annotation[#, {"Filling", {1, 2}}, "RadialComponent"]& ], 
+          TagBox[{
+            Directive[
+             PointSize[Large], 
+             Thickness[Large], 
+             RGBColor[0.880722, 0.611041, 0.142051], 
+             AbsoluteThickness[1.6], 
+             AbsolutePointSize[4.800000000000001]], 
+            JoinForm["Round"], 
+            CapForm["Round"], 
+            LineBox[CompressedData["
+1:eJxTTMoPSmViYGCQAWIQDQNcq3Un75t7y/6RnlOUYNAce+9ufvs59/fay+s8
++7h0xkl7/ylVszZV37RfclaueZPzXnuL+W2vFQoO2ovs3zjn9teJ9pY+Xa++
+7O2yz5fcq8ghc8B+ZXeFwJ7Tq+1tJ3BZuMdetD88U6RoSt0K+52Sz8/mHbtg
+/7unw/elc//+ek6hnK0iq+wj/76Pa7Du328yNejIqzNH7a+qP9nqqbNz/4O+
+rP/CHYfsj67r6jtXfXB/wl4LoekWPfYnEzSDrEqm7s9kPfrwpNRM+9sTfS1i
+7TbuP/i53Dl0/2R7m9qevBS5o/sLLrF+keTs2V+76evNht979xt2ye6TzNi5
+/++82iXlxRf3/9Vo0P+9fvH+O0d2eL9+t3b/Aj2Je7PtnuzvLdTj65J8vN9q
+tvEJndBz+3vFUy5YNh/cX9q4rWuRw839Bt/SH3ba7tu/9oDAevsLKfsfiooc
+j0lV3r9CI2Epb96G/bMiT8ko6Lbbt1hqNqQ55Ow388/rbIyPsA/+X+H3LHLy
+frWVDwJEL/TYM03Tviofu2C/6Jd72ekNi+3FetwqFh1cub/6ROjRhiU77Rl9
+fwXXxdXtZxWcGJXKssAePb4Ayh/a8w==
+             "]]}, 
+           Annotation[#, {"Joined", {1, 2}}, 
+            "RadialComponent"]& ]}}}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, \
+{}, {}, {}}, {{{{
+          TagBox[{}, Annotation[#, {"Filling", {1, 1}}, "RadialComponent"]& ], 
+          TagBox[{
+            Directive[
+             PointSize[Large], 
+             Thickness[Large], 
+             RGBColor[0.368417, 0.506779, 0.709798], 
+             AbsoluteThickness[1.6], 
+             AbsolutePointSize[4.800000000000001]], 
+            JoinForm["Round"], 
+            CapForm["Round"], 
+            LineBox[CompressedData["
+1:eJwB0QEu/iFib1JlAgAAABwAAAACAAAAAAAAAAAAAABbszJFEf/QP/CKU8fs
+X5g/D8yoDxS2uT8aeNeVbii5PwRDXSr6C8k/HcuXn390sT82pI5jWc20PxCY
+WaeUBbc/ephGtpsjsT8N7eNktEyyP/oicCkjk58/4ifq4c7Jrj+Yoo8KGreF
+P8TaUXq8KN8/P/wlwHgJnb/x8HE8/Ge+P/UDopO+NKK/zG7tnjCBtz+Cchlt
+DSSrvwE0waHLYa8/gHquvX6brb9RpAO1AG+uP58Gl3XSIre/nkHoqWKriT8y
+srfprqGhv/Z/RHvbep4/KgiWYFtM0L+wZGrxRflkv3scdC4ibpa/82zbdLM6
+wb/qWH2UJqvXv9kOddenvLq/tgD6imVTxL8PzmphLBTYv2zNEP6Yt9a/Y8Zo
+1Oe9w7+M1CRcv8u2v04LIlnoL7i/xnarGfH2nL96Cqr/ZNanv1tLY7vINma/
+reDrZi+Kg79VzEJiKZBbP8prBUgesJq/ydurIi0Ghz/NZcbCAm+Ov3So9U8x
+qIY/Zc0ioof91b9LcKgrAzXaP4tHuFoPIqS/B00j4UkLtD+rikBdXdaZv68y
+2r4MQbs/AAAAAAAAAABbszJFEf/QP1Cl3jY=
+             "]]}, 
+           Annotation[#, {"Joined", {1, 1}}, 
+            "RadialComponent"]& ]}}}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}, \
+{}, {}, {}}}, {{}, {}}, {}}, {DisplayFunction -> Identity, AxesLabel -> {
+       FormBox["\"ai\"", TraditionalForm], 
+       FormBox["\"vision\"", TraditionalForm], 
+       FormBox["\"mlmining\"", TraditionalForm], 
+       FormBox["\"nlp\"", TraditionalForm], 
+       FormBox["\"inforet\"", TraditionalForm], 
+       FormBox["\"arch\"", TraditionalForm], 
+       FormBox["\"comm\"", TraditionalForm], 
+       FormBox["\"sec\"", TraditionalForm], 
+       FormBox["\"mod\"", TraditionalForm], 
+       FormBox["\"da\"", TraditionalForm], 
+       FormBox["\"bed\"", TraditionalForm], 
+       FormBox["\"hpc\"", TraditionalForm], 
+       FormBox["\"mobile\"", TraditionalForm], 
+       FormBox["\"metrics\"", TraditionalForm], 
+       FormBox["\"ops\"", TraditionalForm], 
+       FormBox["\"plan\"", TraditionalForm], 
+       FormBox["\"soft\"", TraditionalForm], 
+       FormBox["\"act\"", TraditionalForm], 
+       FormBox["\"crypt\"", TraditionalForm], 
+       FormBox["\"log\"", TraditionalForm], 
+       FormBox["\"bio\"", TraditionalForm], 
+       FormBox["\"graph\"", TraditionalForm], 
+       FormBox["\"csed\"", TraditionalForm], 
+       FormBox["\"ecom\"", TraditionalForm], 
+       FormBox["\"chi\"", TraditionalForm], 
+       FormBox["\"robotics\"", TraditionalForm], 
+       FormBox["\"visualization\"", TraditionalForm]}, AxesOrigin -> 0, 
+     AxesStyle -> Automatic, GridLinesStyle -> Directive[
+       GrayLevel[0.5, 0.4]], ImagePadding -> Automatic, ImageSize -> Medium, 
+     PlotRangePadding -> {{
+        Scaled[0.05], 
+        Scaled[0.05]}, {
+        Scaled[0.05], 
+        Scaled[0.05]}}}], 
+   FormBox[
+    FormBox[
+     TemplateBox[{
+      "\"Northeastern University\"", "\"University of Texas at Austin\""}, 
+      "LineLegend", DisplayFunction -> (FormBox[
+        StyleBox[
+         StyleBox[
+          PaneBox[
+           TagBox[
+            GridBox[{{
+               TagBox[
+                GridBox[{{
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.368417, 0.506779, 0.709798], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {
+                    LineBox[{{0, 12.5}, {20, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.368417, 0.506779, 0.709798], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {}}}, AspectRatio -> 
+                    Full, ImageSize -> {20, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                 AutoDelete -> False, 
+                 GridBoxDividers -> {
+                  "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                 GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}},
+                  GridBoxSpacings -> {"Columns" -> {{0.8, 0.5}}}], "Grid"]}, {
+              
+               TagBox[
+                GridBox[{{
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.880722, 0.611041, 0.142051], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {
+                    LineBox[{{0, 12.5}, {20, 12.5}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.5], 
+                    RGBColor[0.880722, 0.611041, 0.142051], 
+                    AbsoluteThickness[1.6], 
+                    AbsolutePointSize[4.800000000000001]], {}}}, AspectRatio -> 
+                    Full, ImageSize -> {20, 12.5}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.18000000000000002`] -> 
+                    Baseline)], #2}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                 AutoDelete -> False, 
+                 GridBoxDividers -> {
+                  "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                 GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}},
+                  GridBoxSpacings -> {"Columns" -> {{0.8, 0.5}}}], "Grid"]}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+             AutoDelete -> False, 
+             GridBoxDividers -> {"Columns" -> {{None}}, "Rows" -> {{None}}}, 
+             GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}}, 
+             GridBoxSpacings -> {"Columns" -> {{0}}, "Rows" -> {{1}}}], 
+            "Grid"], Alignment -> Left, AppearanceElements -> None, 
+           ImageMargins -> {{5, 5}, {5, 5}}, ImageSizeAction -> 
+           "ResizeToFit"], LineIndent -> 0, StripOnInput -> False], {
+          Directive[
+           GrayLevel[0.2], 
+           Opacity[1]], FontFamily -> "Arial"}, Background -> Automatic, 
+         StripOnInput -> False], TraditionalForm]& ), 
+      InterpretationFunction :> (RowBox[{"LineLegend", "[", 
+         RowBox[{
+           RowBox[{"{", 
+             RowBox[{
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   
+                   TemplateBox[<|
+                    "color" -> RGBColor[0.368417, 0.506779, 0.709798]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "1.6`", "]"}], ",", 
+                   
+                   RowBox[{
+                    "AbsolutePointSize", "[", "4.800000000000001`", "]"}]}], 
+                 "]"}], ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   
+                   TemplateBox[<|
+                    "color" -> RGBColor[0.880722, 0.611041, 0.142051]|>, 
+                    "RGBColorSwatchTemplate"], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "1.6`", "]"}], ",", 
+                   
+                   RowBox[{
+                    "AbsolutePointSize", "[", "4.800000000000001`", "]"}]}], 
+                 "]"}]}], "}"}], ",", 
+           RowBox[{"{", 
+             RowBox[{#, ",", #2}], "}"}], ",", 
+           RowBox[{"LegendMarkers", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{
+                 RowBox[{"{", 
+                   RowBox[{"False", ",", "Automatic"}], "}"}], ",", 
+                 RowBox[{"{", 
+                   RowBox[{"False", ",", "Automatic"}], "}"}]}], "}"}]}], ",", 
+           RowBox[{"Joined", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{"True", ",", "True"}], "}"}]}], ",", 
+           RowBox[{"LabelStyle", "\[Rule]", 
+             RowBox[{"Directive", "[", 
+               RowBox[{
+                 
+                 TemplateBox[<|"color" -> GrayLevel[0.2]|>, 
+                  "GrayLevelColorSwatchTemplate"], ",", 
+                 RowBox[{"Opacity", "[", "1", "]"}]}], "]"}]}], ",", 
+           RowBox[{"LegendLayout", "\[Rule]", "\"Row\""}]}], "]"}]& ), 
+      Editable -> True], TraditionalForm], TraditionalForm]},
+  "Legended",
+  DisplayFunction->(GridBox[{{
+      TagBox[
+       ItemBox[
+        PaneBox[
+         TagBox[#, "SkipImageSizeLevel"], Alignment -> {Center, Baseline}, 
+         BaselinePosition -> Baseline], DefaultBaseStyle -> "Labeled"], 
+       "SkipImageSizeLevel"]}, {
+      ItemBox[#2, DefaultBaseStyle -> "LabeledLabel"]}}, 
+    GridBoxAlignment -> {"Columns" -> {{Center}}, "Rows" -> {{Center}}}, 
+    AutoDelete -> False, GridBoxItemSize -> Automatic, 
+    BaselinePosition -> {1, 1}]& ),
+  Editable->True,
+  InterpretationFunction->(RowBox[{"Legended", "[", 
+     RowBox[{#, ",", 
+       RowBox[{"Placed", "[", 
+         RowBox[{#2, ",", "Below"}], "]"}]}], "]"}]& )]], "Output",
+ CellChangeTimes->{3.952104450004599*^9},
+ CellLabel->"Out[20]=",ExpressionUUID->"2802e1d3-aa51-402d-bcf6-c25c9fa4fdd6"]
 }, Open  ]]
 },
 WindowSize->{606, 660},
@@ -5851,7 +8738,7 @@ Cell[9092, 248, 30155, 734, 326, "Output",ExpressionUUID->"1ae802d3-c6ca-46cf-a5
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[39284, 987, 10360, 255, 862, "Input",ExpressionUUID->"fa91eb87-b7b3-4842-880f-34f7489a7b8b"],
-Cell[49647, 1244, 48649, 1138, 251, "Output",ExpressionUUID->"4c7fe250-b65f-4830-bb5c-8dbc5dd77271"]
+Cell[49647, 1244, 48649, 1138, 240, "Output",ExpressionUUID->"4c7fe250-b65f-4830-bb5c-8dbc5dd77271"]
 }, Open  ]],
 Cell[CellGroupData[{
 Cell[98333, 2387, 2180, 55, 166, "Input",ExpressionUUID->"4578fca1-3ffa-421f-9580-9bd25deb08a4"],
@@ -5875,8 +8762,16 @@ Cell[169078, 4026, 1272, 29, 157, "Input",ExpressionUUID->"6acc32fe-0fbe-4518-8b
 Cell[170353, 4057, 14300, 304, 186, "Output",ExpressionUUID->"7db0b9dd-f23a-4afd-9851-6295dbc2c49c"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[184690, 4366, 6326, 155, 606, "Input",ExpressionUUID->"ac5fa51a-2bfe-4687-b28d-1464be6eae46"],
-Cell[191019, 4523, 56708, 1303, 332, "Output",ExpressionUUID->"6968fb45-bed3-48f7-96dc-89383b96a290"]
+Cell[184690, 4366, 6330, 156, 606, "Input",ExpressionUUID->"ac5fa51a-2bfe-4687-b28d-1464be6eae46"],
+Cell[191023, 4524, 56708, 1303, 299, "Output",ExpressionUUID->"6968fb45-bed3-48f7-96dc-89383b96a290"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[247768, 5832, 6045, 152, 590, "Input",ExpressionUUID->"d886674f-5e97-466a-8573-cdbb63501303"],
+Cell[253816, 5986, 55005, 1277, 299, "Output",ExpressionUUID->"c510d71d-65d2-41a9-bf98-6168855996f1"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[308858, 7268, 6068, 153, 590, "Input",ExpressionUUID->"34398d37-a9ea-4047-8bf4-eb86ae8fcbb6"],
+Cell[314929, 7423, 55558, 1290, 342, "Output",ExpressionUUID->"2802e1d3-aa51-402d-bcf6-c25c9fa4fdd6"]
 }, Open  ]]
 }
 ]
