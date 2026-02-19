@@ -1,12 +1,9 @@
 __pycache__/
 
-# Data from CSRankings
+# Large data from CSRankings (not needed for the website)
 dblp.xml.gz
-generated-author-info.csv
 csrankings.py
 sigcse-research-articles.csv
-
-area_publications.csv
 iclr.csv
 faculty_iclr_details.csv
 faculty_iclr_top10.csv

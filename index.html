@@ -5,8 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="UTF-8">
-    <script src="//zhtluo.com/header.js"></script>
-    <title>Fork of https://cspubs.org/</title>
+    <title>ICLR Points — Per-Conference View</title>
     <style>
         /* body { */
         /* max-width: none; */
@@ -74,17 +73,93 @@
             margin-bottom: 5px;
             border-top: 1px dashed #ccc;
         }
+
+        #view-toggle {
+            margin-bottom: 10px;
+        }
+
+        #view-toggle label {
+            margin-right: 15px;
+        }
+
+        .description {
+            max-width: 800px;
+            line-height: 1.5;
+        }
+
+        .description h2 {
+            margin-top: 1.5em;
+        }
+
+        .formula {
+            background: #f5f5f5;
+            border-left: 3px solid #ccc;
+            padding: 10px 15px;
+            margin: 10px 0;
+            font-family: monospace;
+            font-size: 0.95em;
+            overflow-x: auto;
+        }
+
+        details {
+            margin: 10px 0;
+        }
+
+        details summary {
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 15px 0;
+            border-top: 1px solid #eee;
+            font-size: 0.75em;
+            color: #999;
+        }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.0/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 </head>
 
 <body>
-    <div id="menu"></div>
+    <h1>ICLR Points — Per-Conference View</h1>
 
-    <h1>Fork of CSPubs https://cspubs.org/</h1>
+    <div class="description">
+        <p>
+            This is a fork of <a href="https://iclrpoints.com/">iclrpoints.com</a> with two changes:
+        </p>
+        <ol>
+            <li><strong>Per-conference granularity:</strong> you can view ICLR points for individual conferences (e.g., POPL and PLDI separately) instead of only at the area level (e.g., "Programming Languages").</li>
+            <li><strong>Paper-count-based splitting:</strong> faculty effort is split proportionally to their number of papers at each conference, rather than equally across distinct areas.</li>
+        </ol>
+        <p>You can also toggle individual conferences on/off. The baseline is always the ICLR conference itself (which always shows 1.00 ICLR points).</p>
 
-    <p>This fork lets you toggle individual conferences and ICLR points refers to ICLR itself instead of the entire Machine Learning area.</p>
+        <details>
+            <summary>Formula details</summary>
+            <p>For each faculty member <em>f</em> who publishes at selected conferences:</p>
+            <div class="formula">
+                contribution(f, c) = papers(f, c) / total_papers(f)
+            </div>
+            <p>where <code>papers(f, c)</code> is the number of papers faculty <em>f</em> has at conference <em>c</em>,
+               and <code>total_papers(f)</code> is their total across all selected conferences.</p>
+            <p><strong>Example:</strong> A faculty with 1 PLDI paper, 1 POPL paper, and 2 ICLR papers (4 total) contributes
+               0.25 to PLDI, 0.25 to POPL, and 0.50 to ICLR.</p>
+            <p>The effective faculty count and effort per paper for each conference:</p>
+            <div class="formula">
+                confEffective(c) = &Sigma;<sub>f</sub> contribution(f, c)<br>
+                effort(c) = confEffective(c) &times; years / pubCount(c)
+            </div>
+            <p>Finally, everything is normalized to ICLR:</p>
+            <div class="formula">
+                iclrPoints(c) = effort(c) / effort(ICLR)
+            </div>
+            <p>The <strong>area-level</strong> view aggregates conference-level effective faculties and publications
+               to the area level before computing effort. Note that area-level values will differ from the
+               <a href="https://iclrpoints.com/">original site</a> because the splitting formula changed
+               (paper-count-based instead of distinct-area-based).</p>
+        </details>
+    </div>
 
     <div id="layout">
         <!-- Sidebar for selectors -->
@@ -105,6 +180,10 @@
         <div id="canvas">
             <div id="results">
                 <p>Downloading data, please wait...</p>
+            </div>
+            <div id="view-toggle">
+                <label><input type="radio" name="view" value="area" checked> Area view</label>
+                <label><input type="radio" name="view" value="conference"> Conference view</label>
             </div>
             <canvas id="iclrChart" height="400">
             </canvas>
@@ -197,7 +276,8 @@
                             area: conf.Area,
                             areaTitle: conf.AreaTitle,
                             parent: conf.ParentArea,
-                            nextTier: conf.NextTier
+                            nextTier: conf.NextTier,
+                            title: conf.ConferenceTitle
                         };
                     });
 
@@ -314,7 +394,7 @@
                             areaCheckbox.addEventListener('change', function () {
                                 const confCheckboxes = confContainer.querySelectorAll('input[type="checkbox"]');
                                 confCheckboxes.forEach(cb => {
-                                    if (cb.dataset.nexttier !== 'true') {
+                                    if (cb.dataset.nexttier !== 'true' && !cb.disabled) {
                                         cb.checked = areaCheckbox.checked;
                                     }
                                 });
@@ -362,6 +442,7 @@
                For each faculty, build the set of areas (from any publication in a selected conference)
                and count them fractionally.
             */
+            // Build faculty → { confCode: paperCount }
             const facultyMap = {};
             csRankingsData.forEach(row => {
                 // Row format: [name, dept, conference, count, adjustedcount, year]
@@ -370,21 +451,24 @@
                 const year = parseInt(row[5].trim());
                 if (year >= fromYear && year <= toYear && selectedConfs.has(confCode)) {
                     if (conferenceMapping[confCode]) {
-                        const areaCode = conferenceMapping[confCode].area;
-                        if (!facultyMap[name]) {
-                            facultyMap[name] = new Set();
-                        }
-                        facultyMap[name].add(confCode);
+                        if (!facultyMap[name]) facultyMap[name] = {};
+                        facultyMap[name][confCode] = (facultyMap[name][confCode] || 0) + 1;
                     }
                 }
             });
+
+            // Compute effective faculties per conference and per area
+            const confEffective = {};
             const areaEffective = {};
             for (const faculty in facultyMap) {
-                const areas = Array.from(facultyMap[faculty]);
-                const factor = 1 / areas.length;
-                areas.forEach(area => {
-                    areaEffective[area] = (areaEffective[area] || 0) + factor;
-                });
+                const confs = facultyMap[faculty];
+                const totalPapers = Object.values(confs).reduce((a, b) => a + b, 0);
+                for (const conf in confs) {
+                    const weight = confs[conf] / totalPapers;
+                    confEffective[conf] = (confEffective[conf] || 0) + weight;
+                    const areaCode = conferenceMapping[conf].area;
+                    areaEffective[areaCode] = (areaEffective[areaCode] || 0) + weight;
+                }
             }
             const parentEffective = {};
             for (const area in areaEffective) {
@@ -398,6 +482,7 @@
             /* 2. Publication Count Calculation from area_publications.csv (for user-selected range)
                Sum publication counts for rows where the conference (first column) is selected.
             */
+            const confPublications = {};    // per-conference
             const areaPublications = {};
             const parentPublications = {};
             areaPublicationsData.forEach(row => {
@@ -407,6 +492,7 @@
                 const pubCount = parseFloat(row[2].trim());
                 if (year >= fromYear && year <= toYear && selectedConfs.has(confCode)) {
                     if (conferenceMapping[confCode]) {
+                        confPublications[confCode] = (confPublications[confCode] || 0) + pubCount;
                         const aggArea = conferenceMapping[confCode].area;
                         areaPublications[aggArea] = (areaPublications[aggArea] || 0) + pubCount;
                         const parent = conferenceMapping[confCode].parent;
@@ -418,14 +504,15 @@
             /* 3. Compute Average Effort per Area and Parent using the new formula:
                effort = (effective faculty count * number of years) / (publication count)
             */
+            const confEffort = {};
+            for (const conf in confEffective) {
+                const pubs = confPublications[conf] || 0;
+                confEffort[conf] = pubs > 0 ? (confEffective[conf] * userYears) / pubs : 0;
+            }
             const areaEffort = {};
             for (const area in areaEffective) {
-                const eff = areaEffective[area];
                 const pubs = areaPublications[area] || 0;
-                if (area === "iclr") {
-                    console.log("Effective Faculty Count:", eff, "Publication Count:", pubs);
-                }
-                areaEffort[area] = pubs > 0 ? (eff * userYears) / pubs : 0;
+                areaEffort[area] = pubs > 0 ? (areaEffective[area] * userYears) / pubs : 0;
             }
             const parentEffort = {};
             for (const parent in parentEffective) {
@@ -437,49 +524,19 @@
             /* 4. Compute ICLR Point Unit for mlmining, considering only first-tier conferences.
                New formula: mlEffortUnit = (effective mlmining faculty count * mlYears) / (publication count for mlmining)
             */
-            const mlStart = fromYear, mlEnd = toYear, mlYears = mlEnd - mlStart + 1;
-            mlEffectiveFacultyCount = areaEffective["iclr"] || 0;
-            // Compute publication count for mlmining (first tier only) from area_publications.csv.
-            let mlPubCount = 0;
-            areaPublicationsData.forEach(row => {
-                const confCode = row[0].trim();
-                const year = parseInt(row[1].trim());
-                const pubCount = parseFloat(row[2].trim());
-                if (year >= mlStart && year <= mlEnd && conferenceMapping[confCode] &&
-                    conferenceMapping[confCode].area === "mlmining" &&
-                    conferenceMapping[confCode].nextTier !== "true") {
-                    mlPubCount += pubCount;
-                }
-            });
-            const mlEffortUnit = mlPubCount > 0 ? (mlEffectiveFacultyCount * mlYears) / mlPubCount : 0;
-
-            console.log("ML Effort Unit:", mlEffortUnit);
-
-            // const iclrEffectiveFacultyCount = iclrfacultylist.size;
-
-
-            // console.log("ICLR Effective Faculty Count:", iclrEffectiveFacultyCount);
-
-            // // Compute publication count for "iclr" from area_publications.csv.
-            // let iclrPubCount = 0;
-            // areaPublicationsData.forEach(row => {
-            //     const confCode = row[0].trim();
-            //     const year = parseInt(row[1].trim());
-            //     const pubCount = parseFloat(row[2].trim());
-            //     if (year >= mlStart && year <= mlEnd && confCode === "iclr") {
-            //         iclrPubCount += pubCount;
-            //     }
-            // });
-
-            // // Calculate the effort unit for "iclr".
-            // const mlEffortUnit = iclrPubCount > 0 ? (iclrEffectiveFacultyCount * mlYears) / iclrPubCount : 0;
-
-            // console.log("ICLR Effort Unit:", mlEffortUnit);
+            // Use ICLR conference directly as baseline
+            const iclrEffective = confEffective["iclr"] || 0;
+            const iclrPubs = confPublications["iclr"] || 0;
+            const mlEffortUnit = iclrPubs > 0 ? (iclrEffective * userYears) / iclrPubs : 0;
 
             /* 5. Express Each Area’s Effort in ICLR Points:
                effort_ICLR = (areaEffort) / (mlEffortUnit)
             */
            
+            const confEffortICLR = {};
+            for (const conf in confEffort) {
+                confEffortICLR[conf] = mlEffortUnit > 0 ? confEffort[conf] / mlEffortUnit : 0;
+            }
             const areaEffortICLR = {};
             for (const area in areaEffort) {
                 areaEffortICLR[area] = mlEffortUnit > 0 ? areaEffort[area] / mlEffortUnit : 0;
@@ -488,8 +545,6 @@
             for (const parent in parentEffort) {
                 parentEffortICLR[parent] = mlEffortUnit > 0 ? parentEffort[parent] / mlEffortUnit : 0;
             }
-
-            console.log("Area Effort ML:", areaEffortICLR["mlmining"]);
 
             /* 6. Build Hierarchical, Sorted Output.
                For each parent area (alphabetically), list its effective faculty count, publication count,
@@ -528,37 +583,68 @@
             // document.getElementById('results').innerHTML = html;
             document.getElementById('results').innerHTML = "";
 
-            // Prepare chart data from areaEffortICLR and areaMapping
+            // Determine which view is active
+            const viewMode = document.querySelector('input[name="view"]:checked').value;
+
+            // Prepare chart data
             const labels = [];
             const iclrPointsData = [];
             const fillColor = [];
             const borderColor = [];
-            parentAreas.forEach(parent => {
-                const areasForParent = Object.keys(areaMapping)
-                    .filter(area => areaMapping[area].parent === parent)
-                    .sort((a, b) => {
-                        const aTitle = areaMapping[a].areaTitle.toLowerCase();
-                        const bTitle = areaMapping[b].areaTitle.toLowerCase();
-                        return aTitle.localeCompare(bTitle);
+
+            if (viewMode === 'area') {
+                // Area view: one bar per area, grouped by parent
+                parentAreas.forEach(parent => {
+                    const areasForParent = Object.keys(areaMapping)
+                        .filter(area => areaMapping[area].parent === parent)
+                        .sort((a, b) => {
+                            const aTitle = areaMapping[a].areaTitle.toLowerCase();
+                            const bTitle = areaMapping[b].areaTitle.toLowerCase();
+                            return aTitle.localeCompare(bTitle);
+                        });
+                    areasForParent.forEach(area => {
+                        if (areaEffortICLR.hasOwnProperty(area)) {
+                            labels.push(areaMapping[area].areaTitle);
+                            iclrPointsData.push(parseFloat(areaEffortICLR[area].toFixed(2)));
+                            fillColor.push(parentAreaFill[parent]);
+                            borderColor.push(parentAreaBorder[parent]);
+                        }
                     });
-                areasForParent.forEach(area => {
-                    if (areaEffortICLR.hasOwnProperty(area)) {
-                        labels.push(areaMapping[area].areaTitle);
-                        iclrPointsData.push(parseFloat(areaEffortICLR[area].toFixed(2)));
+                });
+            } else {
+                // Conference view: one bar per selected conference, grouped by parent area
+                parentAreas.forEach(parent => {
+                    // Get all selected conferences for this parent, sorted by conference title
+                    const confsForParent = Object.keys(confEffortICLR)
+                        .filter(conf => conferenceMapping[conf] && conferenceMapping[conf].parent === parent)
+                        .sort((a, b) => {
+                            const aTitle = (conferenceMapping[a].title || a).toLowerCase();
+                            const bTitle = (conferenceMapping[b].title || b).toLowerCase();
+                            return aTitle.localeCompare(bTitle);
+                        });
+                    confsForParent.forEach(conf => {
+                        labels.push(conferenceMapping[conf].title || conf.toUpperCase());
+                        iclrPointsData.push(parseFloat(confEffortICLR[conf].toFixed(2)));
                         fillColor.push(parentAreaFill[parent]);
                         borderColor.push(parentAreaBorder[parent]);
-                    }
+                    });
                 });
-            });
+            }
+
+            // Dynamically resize chart height based on number of bars
+            const barHeight = 25;
+            const chartHeight = Math.max(400, labels.length * barHeight);
+            document.getElementById('iclrChart').style.height = chartHeight + 'px';
 
             // Create or update the chart
             if (window.iclrChart instanceof Chart) {
-                // Update existing chart
                 window.iclrChart.data.labels = labels;
                 window.iclrChart.data.datasets[0].data = iclrPointsData;
+                window.iclrChart.data.datasets[0].backgroundColor = fillColor;
+                window.iclrChart.data.datasets[0].borderColor = borderColor;
+                window.iclrChart.resize();
                 window.iclrChart.update();
             } else {
-                // Create a new horizontal bar chart (using indexAxis: 'y' in Chart.js v3+)
                 Chart.register(ChartDataLabels);
                 const ctx = document.getElementById('iclrChart').getContext('2d');
                 window.iclrChart = new Chart(ctx, {
@@ -575,6 +661,7 @@
                         }]
                     },
                     options: {
+                        maintainAspectRatio: false,
                         indexAxis: 'y',
                         scales: {
                             x: {
@@ -630,6 +717,9 @@
                     updateResults();
                 }
             });
+            document.querySelectorAll('input[name="view"]').forEach(radio => {
+                radio.addEventListener('change', updateResults);
+            });
         }
 
         document.addEventListener('DOMContentLoaded', function () {
@@ -643,9 +733,9 @@
         });
     </script>
 
-    <div id="contact"></div>
-
-    <script src="//zhtluo.com/frame.js"></script>
+    <footer>
+        The edits to this fork have been mostly vibe coded using <a href="https://claude.ai/">Claude</a>.
+    </footer>
 
 </body>
 
