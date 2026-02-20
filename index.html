@@ -632,62 +632,59 @@
                 });
             }
 
-            // Destroy previous chart to avoid rendering glitches
-            if (window.iclrChart instanceof Chart) {
-                window.iclrChart.destroy();
-            }
-
-            // Dynamically resize chart height based on number of bars
-            const barHeight = 25;
-            const chartHeight = Math.max(400, labels.length * barHeight);
+            // Set canvas height proportional to number of bars
             const chartCanvas = document.getElementById('iclrChart');
-            chartCanvas.style.height = chartHeight + 'px';
+            const chartHeight = Math.max(400, labels.length * 20);
+            chartCanvas.setAttribute('height', chartHeight);
 
-            // Register plugin once
-            if (!window._chartPluginRegistered) {
+            // Create or update the chart
+            if (window.iclrChart instanceof Chart) {
+                window.iclrChart.data.labels = labels;
+                window.iclrChart.data.datasets[0].data = iclrPointsData;
+                window.iclrChart.data.datasets[0].backgroundColor = fillColor;
+                window.iclrChart.data.datasets[0].borderColor = borderColor;
+                window.iclrChart.update();
+            } else {
                 Chart.register(ChartDataLabels);
-                window._chartPluginRegistered = true;
-            }
-
-            const ctx = chartCanvas.getContext('2d');
-            window.iclrChart = new Chart(ctx, {
-                plugins: [ChartDataLabels],
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'ICLR point',
-                        data: iclrPointsData,
-                        backgroundColor: fillColor,
-                        borderColor: borderColor,
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    indexAxis: 'y',
-                    scales: {
-                        x: {
-                            beginAtZero: true
-                        },
-                        y: {
-                            ticks: {
-                                display: true,
-                                autoSkip: false
-                            }
-                        }
+                const ctx = chartCanvas.getContext('2d');
+                window.iclrChart = new Chart(ctx, {
+                    plugins: [ChartDataLabels],
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'ICLR point',
+                            data: iclrPointsData,
+                            backgroundColor: fillColor,
+                            borderColor: borderColor,
+                            borderWidth: 1
+                        }]
                     },
-                    plugins: {
-                        datalabels: {
-                            anchor: 'start',
-                            align: 'end',
-                            formatter: (value, context) => {
-                                return value.toFixed(2);
+                    options: {
+                        indexAxis: 'y',
+                        scales: {
+                            x: {
+                                beginAtZero: true
+                            },
+                            y: {
+                                ticks: {
+                                    display: true,
+                                    autoSkip: false
+                                }
+                            }
+                        },
+                        plugins: {
+                            datalabels: {
+                                anchor: 'start',
+                                align: 'end',
+                                formatter: (value, context) => {
+                                    return value.toFixed(2);
+                                }
                             }
                         }
                     }
-                }
-            });
+                });
+            }
         }
 
         // Load generated-author-info.csv (local copy).
