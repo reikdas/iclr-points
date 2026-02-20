@@ -632,59 +632,58 @@
                 });
             }
 
-            // Set canvas height proportional to number of bars
-            const chartCanvas = document.getElementById('iclrChart');
-            const chartHeight = Math.max(400, labels.length * 20);
-            chartCanvas.setAttribute('height', chartHeight);
-
-            // Create or update the chart
+            // Destroy previous chart, set canvas height, then recreate
             if (window.iclrChart instanceof Chart) {
-                window.iclrChart.data.labels = labels;
-                window.iclrChart.data.datasets[0].data = iclrPointsData;
-                window.iclrChart.data.datasets[0].backgroundColor = fillColor;
-                window.iclrChart.data.datasets[0].borderColor = borderColor;
-                window.iclrChart.update();
-            } else {
+                window.iclrChart.destroy();
+                window.iclrChart = null;
+            }
+
+            const chartCanvas = document.getElementById('iclrChart');
+            chartCanvas.setAttribute('height', Math.max(400, labels.length * 20));
+
+            if (!window._chartPluginRegistered) {
                 Chart.register(ChartDataLabels);
-                const ctx = chartCanvas.getContext('2d');
-                window.iclrChart = new Chart(ctx, {
-                    plugins: [ChartDataLabels],
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'ICLR point',
-                            data: iclrPointsData,
-                            backgroundColor: fillColor,
-                            borderColor: borderColor,
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        indexAxis: 'y',
-                        scales: {
-                            x: {
-                                beginAtZero: true
-                            },
-                            y: {
-                                ticks: {
-                                    display: true,
-                                    autoSkip: false
-                                }
-                            }
+                window._chartPluginRegistered = true;
+            }
+
+            const ctx = chartCanvas.getContext('2d');
+            window.iclrChart = new Chart(ctx, {
+                plugins: [ChartDataLabels],
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'ICLR point',
+                        data: iclrPointsData,
+                        backgroundColor: fillColor,
+                        borderColor: borderColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true
                         },
-                        plugins: {
-                            datalabels: {
-                                anchor: 'start',
-                                align: 'end',
-                                formatter: (value, context) => {
-                                    return value.toFixed(2);
-                                }
+                        y: {
+                            ticks: {
+                                display: true,
+                                autoSkip: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            anchor: 'start',
+                            align: 'end',
+                            formatter: (value, context) => {
+                                return value.toFixed(2);
                             }
                         }
                     }
-                });
-            }
+                }
+            });
         }
 
         // Load generated-author-info.csv (local copy).
