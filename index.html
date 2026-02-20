@@ -8,10 +8,6 @@
     <title>ICLR Points — Per-Conference View</title>
     <link rel="stylesheet" href="https://zhtluo.com/style.css" type="text/css" />
     <style>
-        body {
-            max-width: none;
-        }
-
         /* Flex container for the overall layout */
         #layout {
             display: flex;
@@ -609,80 +605,89 @@
                     });
                 });
             } else {
-                // Conference view: one bar per selected conference, grouped by parent area
+                // Conference view: grouped by parent → area → conference (matching sidebar order)
                 parentAreas.forEach(parent => {
-                    // Get all selected conferences for this parent, sorted by conference title
-                    const confsForParent = Object.keys(confEffortICLR)
-                        .filter(conf => conferenceMapping[conf] && conferenceMapping[conf].parent === parent)
+                    const areasForParent = Object.keys(areaMapping)
+                        .filter(area => areaMapping[area].parent === parent)
                         .sort((a, b) => {
-                            const aTitle = (conferenceMapping[a].title || a).toLowerCase();
-                            const bTitle = (conferenceMapping[b].title || b).toLowerCase();
+                            const aTitle = areaMapping[a].areaTitle.toLowerCase();
+                            const bTitle = areaMapping[b].areaTitle.toLowerCase();
                             return aTitle.localeCompare(bTitle);
                         });
-                    confsForParent.forEach(conf => {
-                        labels.push(conferenceMapping[conf].title || conf.toUpperCase());
-                        iclrPointsData.push(parseFloat(confEffortICLR[conf].toFixed(2)));
-                        fillColor.push(parentAreaFill[parent]);
-                        borderColor.push(parentAreaBorder[parent]);
+                    areasForParent.forEach(area => {
+                        const confsForArea = Object.keys(confEffortICLR)
+                            .filter(conf => conferenceMapping[conf] && conferenceMapping[conf].area === area)
+                            .sort((a, b) => {
+                                const aTitle = (conferenceMapping[a].title || a).toLowerCase();
+                                const bTitle = (conferenceMapping[b].title || b).toLowerCase();
+                                return aTitle.localeCompare(bTitle);
+                            });
+                        confsForArea.forEach(conf => {
+                            labels.push(conferenceMapping[conf].title || conf.toUpperCase());
+                            iclrPointsData.push(parseFloat(confEffortICLR[conf].toFixed(2)));
+                            fillColor.push(parentAreaFill[parent]);
+                            borderColor.push(parentAreaBorder[parent]);
+                        });
                     });
                 });
+            }
+
+            // Destroy previous chart to avoid rendering glitches
+            if (window.iclrChart instanceof Chart) {
+                window.iclrChart.destroy();
             }
 
             // Dynamically resize chart height based on number of bars
             const barHeight = 25;
             const chartHeight = Math.max(400, labels.length * barHeight);
-            document.getElementById('iclrChart').style.height = chartHeight + 'px';
+            const chartCanvas = document.getElementById('iclrChart');
+            chartCanvas.style.height = chartHeight + 'px';
 
-            // Create or update the chart
-            if (window.iclrChart instanceof Chart) {
-                window.iclrChart.data.labels = labels;
-                window.iclrChart.data.datasets[0].data = iclrPointsData;
-                window.iclrChart.data.datasets[0].backgroundColor = fillColor;
-                window.iclrChart.data.datasets[0].borderColor = borderColor;
-                window.iclrChart.resize();
-                window.iclrChart.update();
-            } else {
+            // Register plugin once
+            if (!window._chartPluginRegistered) {
                 Chart.register(ChartDataLabels);
-                const ctx = document.getElementById('iclrChart').getContext('2d');
-                window.iclrChart = new Chart(ctx, {
-                    plugins: [ChartDataLabels],
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'ICLR point',
-                            data: iclrPointsData,
-                            backgroundColor: fillColor,
-                            borderColor: borderColor,
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        maintainAspectRatio: false,
-                        indexAxis: 'y',
-                        scales: {
-                            x: {
-                                beginAtZero: true
-                            },
-                            y: {
-                                ticks: {
-                                    display: true,
-                                    autoSkip: false
-                                }
-                            }
+                window._chartPluginRegistered = true;
+            }
+
+            const ctx = chartCanvas.getContext('2d');
+            window.iclrChart = new Chart(ctx, {
+                plugins: [ChartDataLabels],
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'ICLR point',
+                        data: iclrPointsData,
+                        backgroundColor: fillColor,
+                        borderColor: borderColor,
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    indexAxis: 'y',
+                    scales: {
+                        x: {
+                            beginAtZero: true
                         },
-                        plugins: {
-                            datalabels: {
-                                anchor: 'start',
-                                align: 'end',
-                                formatter: (value, context) => {
-                                    return value.toFixed(2);
-                                }
+                        y: {
+                            ticks: {
+                                display: true,
+                                autoSkip: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        datalabels: {
+                            anchor: 'start',
+                            align: 'end',
+                            formatter: (value, context) => {
+                                return value.toFixed(2);
                             }
                         }
                     }
-                });
-            }
+                }
+            });
         }
 
         // Load generated-author-info.csv (local copy).
