@@ -135,7 +135,7 @@
                 contribution(f, c) = papers(f, c) / total_papers(f)
             </div>
             <p>where <code>papers(f, c)</code> is the number of papers faculty <em>f</em> has at conference <em>c</em>,
-               and <code>total_papers(f)</code> is their total across all selected conferences.</p>
+               and <code>total_papers(f)</code> is their total across all conferences in the dataset (not just selected ones, so per-conference values are stable).</p>
             <p><strong>Example:</strong> A faculty with 1 PLDI paper, 1 POPL paper, and 2 ICLR papers (4 total) contributes
                0.25 to PLDI, 0.25 to POPL, and 0.50 to ICLR.</p>
             <p>The effective faculty count and effort per paper for each conference:</p>
@@ -435,104 +435,101 @@
                For each faculty, build the set of areas (from any publication in a selected conference)
                and count them fractionally.
             */
-            // Build faculty → { confCode: paperCount }
+            /* 1. Effective Faculties: split across ALL conferences (not just selected).
+               This makes per-conference ICLR points stable regardless of selection.
+            */
+            // Build faculty → { confCode: paperCount } using ALL known conferences
             const facultyMap = {};
             csRankingsData.forEach(row => {
-                // Row format: [name, dept, conference, count, adjustedcount, year]
                 const name = row[0].trim();
                 const confCode = row[2].trim();
                 const year = parseInt(row[5].trim());
-                if (year >= fromYear && year <= toYear && selectedConfs.has(confCode)) {
-                    if (conferenceMapping[confCode]) {
-                        if (!facultyMap[name]) facultyMap[name] = {};
-                        facultyMap[name][confCode] = (facultyMap[name][confCode] || 0) + 1;
-                    }
+                if (year >= fromYear && year <= toYear && conferenceMapping[confCode]) {
+                    if (!facultyMap[name]) facultyMap[name] = {};
+                    facultyMap[name][confCode] = (facultyMap[name][confCode] || 0) + 1;
                 }
             });
 
-            // Compute effective faculties per conference and per area
+            // Compute effective faculties per conference (stable, selection-independent)
             const confEffective = {};
-            const areaEffective = {};
             for (const faculty in facultyMap) {
                 const confs = facultyMap[faculty];
                 const totalPapers = Object.values(confs).reduce((a, b) => a + b, 0);
                 for (const conf in confs) {
                     const weight = confs[conf] / totalPapers;
                     confEffective[conf] = (confEffective[conf] || 0) + weight;
-                    const areaCode = conferenceMapping[conf].area;
-                    areaEffective[areaCode] = (areaEffective[areaCode] || 0) + weight;
-                }
-            }
-            const parentEffective = {};
-            for (const area in areaEffective) {
-                const count = areaEffective[area];
-                if (areaMapping[area]) {
-                    const parent = areaMapping[area].parent;
-                    parentEffective[parent] = (parentEffective[parent] || 0) + count;
                 }
             }
 
-            /* 2. Publication Count Calculation from area_publications.csv (for user-selected range)
-               Sum publication counts for rows where the conference (first column) is selected.
-            */
-            const confPublications = {};    // per-conference
-            const areaPublications = {};
-            const parentPublications = {};
+            /* 2. Publication counts per conference (stable, selection-independent) */
+            const confPublications = {};
             areaPublicationsData.forEach(row => {
-                // Row format: [Area, Year, PublicationCount]
                 const confCode = row[0].trim();
                 const year = parseInt(row[1].trim());
                 const pubCount = parseFloat(row[2].trim());
-                if (year >= fromYear && year <= toYear && selectedConfs.has(confCode)) {
-                    if (conferenceMapping[confCode]) {
-                        confPublications[confCode] = (confPublications[confCode] || 0) + pubCount;
-                        const aggArea = conferenceMapping[confCode].area;
-                        areaPublications[aggArea] = (areaPublications[aggArea] || 0) + pubCount;
-                        const parent = conferenceMapping[confCode].parent;
-                        parentPublications[parent] = (parentPublications[parent] || 0) + pubCount;
-                    }
+                if (year >= fromYear && year <= toYear && conferenceMapping[confCode]) {
+                    confPublications[confCode] = (confPublications[confCode] || 0) + pubCount;
                 }
             });
 
-            /* 3. Compute Average Effort per Area and Parent using the new formula:
-               effort = (effective faculty count * number of years) / (publication count)
-            */
+            /* 3. Per-conference effort and ICLR points (stable) */
             const confEffort = {};
             for (const conf in confEffective) {
                 const pubs = confPublications[conf] || 0;
                 confEffort[conf] = pubs > 0 ? (confEffective[conf] * userYears) / pubs : 0;
             }
+
+            // ICLR baseline (always stable)
+            const mlEffortUnit = confEffort["iclr"] || 0;
+
+            const confEffortICLR = {};
+            for (const conf in confEffort) {
+                confEffortICLR[conf] = mlEffortUnit > 0 ? confEffort[conf] / mlEffortUnit : 0;
+            }
+
+            /* 4. Area-level aggregation from SELECTED conferences only */
+            const areaEffective = {};
+            const areaPublications = {};
+            for (const conf of selectedConfs) {
+                if (confEffective[conf]) {
+                    const areaCode = conferenceMapping[conf].area;
+                    areaEffective[areaCode] = (areaEffective[areaCode] || 0) + confEffective[conf];
+                }
+                if (confPublications[conf]) {
+                    const areaCode = conferenceMapping[conf].area;
+                    areaPublications[areaCode] = (areaPublications[areaCode] || 0) + confPublications[conf];
+                }
+            }
+
             const areaEffort = {};
             for (const area in areaEffective) {
                 const pubs = areaPublications[area] || 0;
                 areaEffort[area] = pubs > 0 ? (areaEffective[area] * userYears) / pubs : 0;
             }
-            const parentEffort = {};
-            for (const parent in parentEffective) {
-                const eff = parentEffective[parent];
-                const pubs = parentPublications[parent] || 0;
-                parentEffort[parent] = pubs > 0 ? (eff * userYears) / pubs : 0;
-            }
 
-            /* 4. Compute ICLR Point Unit for mlmining, considering only first-tier conferences.
-               New formula: mlEffortUnit = (effective mlmining faculty count * mlYears) / (publication count for mlmining)
-            */
-            // Use ICLR conference directly as baseline
-            const iclrEffective = confEffective["iclr"] || 0;
-            const iclrPubs = confPublications["iclr"] || 0;
-            const mlEffortUnit = iclrPubs > 0 ? (iclrEffective * userYears) / iclrPubs : 0;
-
-            /* 5. Express Each Area’s Effort in ICLR Points:
-               effort_ICLR = (areaEffort) / (mlEffortUnit)
-            */
-           
-            const confEffortICLR = {};
-            for (const conf in confEffort) {
-                confEffortICLR[conf] = mlEffortUnit > 0 ? confEffort[conf] / mlEffortUnit : 0;
-            }
             const areaEffortICLR = {};
             for (const area in areaEffort) {
                 areaEffortICLR[area] = mlEffortUnit > 0 ? areaEffort[area] / mlEffortUnit : 0;
+            }
+
+            const parentEffective = {};
+            for (const area in areaEffective) {
+                if (areaMapping[area]) {
+                    const parent = areaMapping[area].parent;
+                    parentEffective[parent] = (parentEffective[parent] || 0) + areaEffective[area];
+                }
+            }
+            const parentPublications = {};
+            for (const area in areaPublications) {
+                if (areaMapping[area]) {
+                    const parent = areaMapping[area].parent;
+                    parentPublications[parent] = (parentPublications[parent] || 0) + areaPublications[area];
+                }
+            }
+            const parentEffort = {};
+            for (const parent in parentEffective) {
+                const pubs = parentPublications[parent] || 0;
+                parentEffort[parent] = pubs > 0 ? (parentEffective[parent] * userYears) / pubs : 0;
             }
             const parentEffortICLR = {};
             for (const parent in parentEffort) {
@@ -616,7 +613,7 @@
                         });
                     areasForParent.forEach(area => {
                         const confsForArea = Object.keys(confEffortICLR)
-                            .filter(conf => conferenceMapping[conf] && conferenceMapping[conf].area === area)
+                            .filter(conf => selectedConfs.has(conf) && conferenceMapping[conf] && conferenceMapping[conf].area === area)
                             .sort((a, b) => {
                                 const aTitle = (conferenceMapping[a].title || a).toLowerCase();
                                 const bTitle = (conferenceMapping[b].title || b).toLowerCase();
